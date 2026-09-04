@@ -60,6 +60,7 @@ import {
   IconPaperclip,
   IconPhone,
   IconPhoto,
+  IconPigMoney,
   IconPizza,
   IconPlus,
   IconProps,
@@ -186,6 +187,7 @@ export const Icons = {
   // Commerce / Plans
   billing: IconCreditCard,
   creditCard: IconCreditCard,
+  piggyBank: IconPigMoney,
   product: IconBox,
   pro: IconCrown,
   exclusive: IconStar,

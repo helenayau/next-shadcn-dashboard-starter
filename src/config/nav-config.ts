@@ -46,6 +46,14 @@ export const navGroups: NavGroup[] = [
         items: []
       },
       {
+        title: 'My Annuity',
+        url: '/dashboard/annuity',
+        icon: 'piggyBank',
+        isActive: false,
+        shortcut: ['a', 'n'],
+        items: []
+      },
+      {
         title: 'Workspaces',
         url: '/dashboard/workspaces',
         icon: 'workspace',
