@@ -662,44 +662,13 @@
   }
 }
 
-@keyframes old-man-mascot-look-eyes {
-  0%,
-  8% {
-    transform: translateX(0);
-  }
-  25%,
-  40% {
-    transform: translateX(-1.5px);
-  }
-  50%,
-  58% {
-    transform: translateX(0);
-  }
-  75%,
-  90% {
-    transform: translateX(1.5px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
 .old-man-mascot-head {
   transform-box: fill-box;
   transform-origin: 50% 78%;
 }
 
-.old-man-mascot-eyes {
-  transform-box: fill-box;
-  transform-origin: 50% 50%;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .old-man-mascot-head {
     animation: old-man-mascot-look-head 6s ease-in-out infinite;
-  }
-
-  .old-man-mascot-eyes {
-    animation: old-man-mascot-look-eyes 6s ease-in-out infinite;
   }
 }
