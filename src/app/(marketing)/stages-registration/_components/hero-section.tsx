@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
-import { HeroIllustration, RugIllustration } from './illustrations';
+import { ShrugIllustration, RugIllustration } from './illustrations';
 
 export function HeroSection() {
   return (
@@ -30,7 +30,7 @@ export function HeroSection() {
           </div>
         </div>
         <div className='flex justify-center lg:justify-end'>
-          <HeroIllustration />
+          <ShrugIllustration />
         </div>
       </div>
       <div className='border-t border-white/60 bg-[#AEE0DE] py-8'>

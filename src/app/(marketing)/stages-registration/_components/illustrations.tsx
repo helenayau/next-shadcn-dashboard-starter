@@ -1,82 +1,88 @@
-export function HeroIllustration() {
+export function ShrugIllustration() {
   return (
     <svg
-      viewBox='0 0 420 340'
+      viewBox='0 0 480 380'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
       className='h-auto w-full max-w-md'
       role='img'
-      aria-label='Illustration of a phone showing retirement progress next to a person relaxing on a couch'
+      aria-label='Illustration of a person shrugging with both hands raised'
     >
-      {/* floor lamp */}
-      <line
-        x1='392'
-        y1='40'
-        x2='392'
-        y2='300'
-        stroke='#9FC9E8'
-        strokeWidth='4'
-        strokeLinecap='round'
-      />
-      <path d='M368 40 h48 l-10 26 h-28 z' fill='#9FC9E8' />
-      <circle cx='392' cy='300' r='8' fill='#9FC9E8' />
+      <rect width='480' height='380' rx='28' fill='#DCEEF8' />
+      <ellipse cx='240' cy='200' rx='205' ry='165' fill='#ffffff' />
 
-      {/* progress card */}
-      <rect x='150' y='8' width='190' height='120' rx='12' fill='#ffffff' />
-      <rect x='150' y='8' width='190' height='62' rx='12' fill='#1E7F86' />
-      <rect x='150' y='58' width='190' height='12' fill='#1E7F86' />
+      {/* hair */}
       <path
-        d='M172 58c10-30 24-30 30-8 8-26 22-24 28 0'
-        stroke='#2FAE60'
-        strokeWidth='3'
-        fill='none'
-        opacity='0.5'
-      />
-      <circle cx='190' cy='40' r='14' fill='#2FAE60' opacity='0.85' />
-      <circle cx='235' cy='34' r='10' fill='#2FAE60' opacity='0.6' />
-      <text x='163' y='98' fontSize='13' fontWeight='600' fill='#0B1F3A'>
-        My retirement —
-      </text>
-      <text x='163' y='116' fontSize='13' fontWeight='700' fill='#1E9E5A'>
-        on track
-      </text>
-      <circle cx='249' cy='111' r='8' fill='#1E9E5A' />
-      <path
-        d='M245.5 111l2.5 2.5 5-5'
-        stroke='white'
-        strokeWidth='1.6'
-        fill='none'
-        strokeLinecap='round'
-        strokeLinejoin='round'
+        d='M240 60c58 0 96 44 96 98 0 38-14 66-30 84-4-24-8-52-8-70 0-40-26-64-58-64s-58 24-58 64c0 18-4 46-8 70-16-18-30-46-30-84 0-54 38-98 96-98z'
+        fill='#0B1F3A'
       />
 
-      {/* speech bubble connecting card to person */}
-      <circle cx='200' cy='150' r='7' fill='#ffffff' />
-      <circle cx='188' cy='166' r='4' fill='#ffffff' />
-
-      {/* couch */}
-      <rect x='60' y='210' width='240' height='70' rx='24' fill='#0B1F3A' />
-      <rect x='50' y='190' width='60' height='60' rx='16' fill='#0B1F3A' />
-      <rect x='40' y='250' width='16' height='40' rx='4' fill='#8A5A3B' />
-      <rect x='250' y='250' width='16' height='40' rx='4' fill='#8A5A3B' />
-
-      {/* person */}
-      <ellipse cx='165' cy='260' rx='42' ry='16' fill='#0E2A4D' />
-      <rect x='140' y='190' width='40' height='60' rx='18' fill='#F2B94A' />
-      <circle cx='160' cy='176' r='16' fill='#8A5A3B' />
+      {/* sleeves + hands (behind torso) */}
       <rect
         x='150'
-        y='230'
-        width='55'
-        height='20'
-        rx='10'
-        fill='#4E6FE0'
-        transform='rotate(12 150 230)'
+        y='215'
+        width='150'
+        height='46'
+        rx='23'
+        fill='#E8792B'
+        transform='rotate(-20 150 215)'
       />
-      <rect x='118' y='236' width='60' height='20' rx='10' fill='#4E6FE0' />
-      <rect x='120' y='260' width='16' height='34' rx='6' fill='#dfe7f5' />
-      <rect x='150' y='262' width='16' height='34' rx='6' fill='#dfe7f5' />
-      <rect x='168' y='214' width='18' height='30' rx='4' fill='#ffffff' />
+      <rect
+        x='180'
+        y='215'
+        width='150'
+        height='46'
+        rx='23'
+        fill='#E8792B'
+        transform='rotate(20 330 215)'
+      />
+      <path
+        d='M182 200c-14-4-30 0-44 10-10 8-16 18-14 26 2 10 14 12 24 8 14-6 30-14 40-24 6-6 4-16-6-20z'
+        fill='#E8792B'
+      />
+      <path
+        d='M298 200c14-4 30 0 44 10 10 8 16 18 14 26-2 10-14 12-24 8-14-6-30-14-40-24-6-6-4-16 6-20z'
+        fill='#E8792B'
+      />
+
+      {/* torso / sweater */}
+      <path d='M195 240c4-14 20-22 45-22s41 8 45 22l14 100H181z' fill='#F0B92A' />
+      <path
+        d='M210 232c-4 18-6 60-2 96'
+        stroke='#D9A11E'
+        strokeWidth='2.5'
+        fill='none'
+        opacity='0.6'
+      />
+      <path
+        d='M270 232c4 18 6 60 2 96'
+        stroke='#D9A11E'
+        strokeWidth='2.5'
+        fill='none'
+        opacity='0.6'
+      />
+
+      {/* neck + face */}
+      <rect x='222' y='190' width='36' height='42' rx='14' fill='#E8792B' />
+      <ellipse cx='240' cy='155' rx='52' ry='62' fill='#E8792B' />
+
+      {/* ears */}
+      <ellipse cx='188' cy='150' rx='8' ry='11' fill='#E8792B' />
+      <ellipse cx='292' cy='150' rx='8' ry='11' fill='#E8792B' />
+      <path
+        d='M186 145c3-3 7-3 8 0'
+        stroke='#0B1F3A'
+        strokeWidth='2'
+        fill='none'
+        strokeLinecap='round'
+      />
+      <path
+        d='M294 145c-3-3-7-3-8 0'
+        stroke='#0B1F3A'
+        strokeWidth='2'
+        fill='none'
+        strokeLinecap='round'
+      />
     </svg>
   );
 }
