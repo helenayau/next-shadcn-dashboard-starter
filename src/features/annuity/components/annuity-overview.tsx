@@ -22,6 +22,7 @@ import { annuitySummary, beneficiaries, withdrawals } from '@/constants/mock-api
 import { formatCurrency } from '../utils';
 import { FundAllocationPie } from './fund-allocation-pie';
 import { IncomeScheduleChart } from './income-schedule-chart';
+import { OldManMascot } from './old-man-mascot';
 
 export function AnnuityOverview() {
   return (
@@ -157,11 +158,14 @@ export function AnnuityOverview() {
           </Card>
 
           <Card>
-            <CardHeader>
-              <CardTitle>Need help?</CardTitle>
-              <CardDescription>
-                Talk to your advisor about withdrawals, beneficiaries, or your payout schedule.
-              </CardDescription>
+            <CardHeader className='flex flex-row items-center gap-4 space-y-0'>
+              <OldManMascot className='h-16 w-16 shrink-0 text-muted-foreground' />
+              <div>
+                <CardTitle>Need help?</CardTitle>
+                <CardDescription>
+                  Talk to your advisor about withdrawals, beneficiaries, or your payout schedule.
+                </CardDescription>
+              </div>
             </CardHeader>
             <CardFooter>
               <Button className='w-full'>
