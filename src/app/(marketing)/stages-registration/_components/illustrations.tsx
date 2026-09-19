@@ -1,3 +1,5 @@
+import type * as React from 'react';
+
 export function ShrugIllustration() {
   return (
     <svg
@@ -172,3 +174,44 @@ export function AdvisorIllustration() {
     </svg>
   );
 }
+
+/**
+ * The three "Why Prudential?" proof-point glyphs from the registration
+ * mockup. Line icons in the Prudential teal, drawn to a 24px grid so they
+ * sit on the same baseline as the copy beside them.
+ */
+export const WhyPrudentialIcons = {
+  Handshake: (props: React.ComponentProps<'svg'>) => (
+    <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.6' {...props}>
+      <path
+        d='M2 9.5 7 5l4 2.5L15.5 5 22 9.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        opacity='0.55'
+      />
+      <path
+        d='M2 13.5 7.5 9l4.5 2.8L16.5 9 22 13.5l-5 5.5-5-3-5 3z'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  ),
+  Dollar: (props: React.ComponentProps<'svg'>) => (
+    <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.6' {...props}>
+      <circle cx='12' cy='12' r='9' />
+      <path d='M12 6.5v11' strokeLinecap='round' />
+      <path
+        d='M14.8 9.2a2.6 2.6 0 0 0-2.6-1.4h-.6a2.1 2.1 0 0 0 0 4.2h.8a2.1 2.1 0 0 1 0 4.2h-.6a2.6 2.6 0 0 1-2.6-1.4'
+        strokeLinecap='round'
+      />
+    </svg>
+  ),
+  People: (props: React.ComponentProps<'svg'>) => (
+    <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='1.6' {...props}>
+      <circle cx='9' cy='8.5' r='3' />
+      <path d='M3.5 18.5a5.5 5.5 0 0 1 11 0' strokeLinecap='round' />
+      <circle cx='17' cy='9.5' r='2.4' opacity='0.7' />
+      <path d='M16 15a4.6 4.6 0 0 1 4.5 3.5' strokeLinecap='round' opacity='0.7' />
+    </svg>
+  )
+};
