@@ -62,5 +62,5 @@ export const registrationStepSchemas = [
 export const registrationSteps = [
   { label: 'Your name', title: 'Tell us who you are' },
   { label: 'Contact info', title: 'How can we reach you?' },
-  { label: 'Consent', title: 'Password and consent' }
+  { label: 'Consent', title: 'Secure your account' }
 ] as const;

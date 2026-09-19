@@ -46,16 +46,16 @@ function circleCentre(index: number) {
  * reference uses no checkmarks — so the current step is marked by its bold
  * navy label rather than by a different glyph.
  *
- * The circles are positioned by equal grid columns rather than by
- * `justify-between`, because the labels are not the same width: letting flex
- * distribute around them pulls the circles off an even rhythm. The rules are
- * laid over the row from the same measurements, so they stay centred on the
- * circles whatever the labels say.
+ * The circles are placed on equal grid columns with the rules laid over from
+ * the same measurements, because the labels differ in width and letting flex
+ * distribute around them pulls the circles off an even rhythm. Every label is
+ * centred on its own circle, as the reference has it; the outer two therefore
+ * sit a little proud of the form column, which the page gutter absorbs.
  */
 function StepIndicator({ currentStep }: { currentStep: number }) {
   const lastIndex = TOTAL_STEPS - 1;
   return (
-    <div className='relative'>
+    <div className='relative pb-7'>
       {registrationSteps.slice(1).map((step, i) => {
         const index = i + 1;
         return (
@@ -83,12 +83,12 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
           const isCurrent = stepNumber === currentStep;
           const align =
             index === 0
-              ? 'items-start justify-self-start'
+              ? 'justify-self-start'
               : index === lastIndex
-                ? 'items-end justify-self-end'
-                : 'items-center justify-self-center';
+                ? 'justify-self-end'
+                : 'justify-self-center';
           return (
-            <li key={step.label} className={`flex flex-col gap-3 ${align}`}>
+            <li key={step.label} className={`flex ${align}`}>
               <span
                 aria-current={isCurrent ? 'step' : undefined}
                 className={`flex size-8 items-center justify-center rounded-full text-sm font-bold ${
@@ -97,10 +97,14 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
               >
                 {stepNumber}
               </span>
+              {/* Centred on the circle and allowed to spill past the column
+                  edge, so the circles stay evenly spaced however long the
+                  labels are. */}
               <span
-                className={`text-[13px] leading-tight whitespace-nowrap ${
+                className={`absolute top-11 text-[13px] leading-tight whitespace-nowrap ${
                   isCurrent ? 'font-bold text-[#001F45]' : 'font-normal text-[#5A6A7A]'
                 }`}
+                style={{ left: circleCentre(index), transform: 'translateX(-50%)' }}
               >
                 {step.label}
               </span>
