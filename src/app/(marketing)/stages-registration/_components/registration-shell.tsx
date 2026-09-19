@@ -9,7 +9,7 @@ import { RegistrationAside } from './registration-aside';
 export function RegistrationShell({ children }: { children: React.ReactNode }) {
   return (
     <main className='min-h-svh bg-[#E2F4FF]'>
-      <SiteHeader />
+      <SiteHeader className='bg-[#001F45]' />
       <div className='mx-auto flex max-w-6xl flex-col gap-10 px-6 py-10 sm:px-10 lg:flex-row lg:items-start lg:justify-between lg:gap-16 lg:py-14'>
         <div className='w-full lg:max-w-[620px]'>{children}</div>
         <RegistrationAside />

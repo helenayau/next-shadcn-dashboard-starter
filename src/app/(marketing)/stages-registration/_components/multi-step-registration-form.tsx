@@ -25,56 +25,90 @@ import { pruClass } from './registration-theme';
 
 const TOTAL_STEPS = registrationSteps.length;
 
+const CIRCLE_PX = 32;
+/** How far a rule stops short of the circle it runs into. */
+const CLEARANCE_PX = 16;
+
 /**
- * Numbered progress rail with a label under each dot.
+ * Where step `index`'s circle centres, measured from the rail's left edge.
+ * The first and last circles sit flush with the column edges, so the centres
+ * span `100% - CIRCLE_PX` and divide evenly between them.
+ */
+function circleCentre(index: number) {
+  const ratio = index / (TOTAL_STEPS - 1);
+  return `calc(${CIRCLE_PX / 2}px + (100% - ${CIRCLE_PX}px) * ${ratio})`;
+}
+
+/**
+ * Numbered progress rail, built to the reference mockup: 32px circles, the
+ * reached ones filled navy with a white numeral and the rest pale grey, joined
+ * by thin grey rules that stop short of each circle. Numerals throughout — the
+ * reference uses no checkmarks — so the current step is marked by its bold
+ * navy label rather than by a different glyph.
  *
- * Equal-width grid columns rather than a flex row, so the three steps space
- * themselves evenly across the whole form column at any width. Each
- * connector is drawn from its own column's centre back to the previous
- * one's, and the dots sit above it on `z-10` with an opaque fill so the line
- * passes behind them instead of through them.
+ * The circles are positioned by equal grid columns rather than by
+ * `justify-between`, because the labels are not the same width: letting flex
+ * distribute around them pulls the circles off an even rhythm. The rules are
+ * laid over the row from the same measurements, so they stay centred on the
+ * circles whatever the labels say.
  */
 function StepIndicator({ currentStep }: { currentStep: number }) {
+  const lastIndex = TOTAL_STEPS - 1;
   return (
-    <ol className='grid grid-cols-3' aria-label={`Step ${currentStep} of ${TOTAL_STEPS}`}>
-      {registrationSteps.map((step, index) => {
-        const stepNumber = index + 1;
-        const isDone = stepNumber < currentStep;
-        const isCurrent = stepNumber === currentStep;
+    <div className='relative'>
+      {registrationSteps.slice(1).map((step, i) => {
+        const index = i + 1;
         return (
-          <li
+          <span
             key={step.label}
-            className='relative flex flex-col items-center gap-3 px-1 text-center'
-          >
-            {index > 0 && (
-              <span
-                aria-hidden
-                className={`absolute top-6 right-1/2 -mt-px h-0.5 w-full ${
-                  stepNumber <= currentStep ? 'bg-[#001F45]' : 'bg-[#001F45]/25'
-                }`}
-              />
-            )}
-            <span
-              aria-current={isCurrent ? 'step' : undefined}
-              className={`relative z-10 flex size-12 items-center justify-center rounded-full border-2 text-base font-bold ${
-                isDone || isCurrent
-                  ? 'border-[#001F45] bg-[#001F45] text-white'
-                  : 'border-[#001F45]/25 bg-[#E2F4FF] text-[#001F45]/50'
-              }`}
-            >
-              {isDone ? <Icons.check className='size-6' aria-hidden /> : stepNumber}
-            </span>
-            <span
-              className={`text-sm leading-tight ${
-                isCurrent ? 'font-bold text-[#001F45]' : 'font-medium text-[#001F45]/60'
-              }`}
-            >
-              {step.label}
-            </span>
-          </li>
+            aria-hidden
+            className={`absolute top-[15px] h-0.5 ${
+              index < currentStep ? 'bg-[#001F45]' : 'bg-[#D0D8E4]'
+            }`}
+            style={{
+              left: `calc(${circleCentre(index - 1)} + ${CIRCLE_PX / 2 + CLEARANCE_PX}px)`,
+              right: `calc(100% - (${circleCentre(index)} - ${CIRCLE_PX / 2 + CLEARANCE_PX}px))`
+            }}
+          />
         );
       })}
-    </ol>
+      <ol
+        className='grid'
+        style={{ gridTemplateColumns: `repeat(${TOTAL_STEPS}, minmax(0, 1fr))` }}
+        aria-label={`Step ${currentStep} of ${TOTAL_STEPS}`}
+      >
+        {registrationSteps.map((step, index) => {
+          const stepNumber = index + 1;
+          const isReached = stepNumber <= currentStep;
+          const isCurrent = stepNumber === currentStep;
+          const align =
+            index === 0
+              ? 'items-start justify-self-start'
+              : index === lastIndex
+                ? 'items-end justify-self-end'
+                : 'items-center justify-self-center';
+          return (
+            <li key={step.label} className={`flex flex-col gap-3 ${align}`}>
+              <span
+                aria-current={isCurrent ? 'step' : undefined}
+                className={`flex size-8 items-center justify-center rounded-full text-sm font-bold ${
+                  isReached ? 'bg-[#001F45] text-white' : 'bg-[#D0D8E4] text-[#4A5A6A]'
+                }`}
+              >
+                {stepNumber}
+              </span>
+              <span
+                className={`text-[13px] leading-tight whitespace-nowrap ${
+                  isCurrent ? 'font-bold text-[#001F45]' : 'font-normal text-[#5A6A7A]'
+                }`}
+              >
+                {step.label}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
   );
 }
 
