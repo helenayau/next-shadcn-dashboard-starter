@@ -21,9 +21,9 @@ export const pruClass = {
   input:
     'h-11 w-full rounded-none border border-[#001F45] bg-white px-3 text-base text-[#001F45] transition-shadow outline-none placeholder:text-[#001F45]/40 focus-visible:ring-2 focus-visible:ring-[#0066CC] focus-visible:ring-offset-1 aria-invalid:border-destructive aria-invalid:ring-0 md:text-sm',
   label: 'text-sm font-semibold text-[#001F45]',
-  /** Measure of the form column in the mockup — inputs and consent copy all
-   *  wrap at the same width, narrower than the heading above them. */
-  formWidth: 'w-full max-w-[400px]',
+  /** Measure of the form column. Widened once the right rail came out, so
+   *  the fields and the step rail are not squeezed into a third of the page. */
+  formWidth: 'w-full max-w-[560px]',
   /** Pill CTA — solid blue when enabled, pale blue when disabled. */
   cta: 'h-11 w-full max-w-[200px] rounded-full bg-[#0066CC] px-6 text-base font-semibold text-white transition-colors hover:bg-[#00539E] disabled:pointer-events-none disabled:bg-[#99C2EB] disabled:text-white disabled:opacity-100',
   link: 'font-semibold text-[#0066CC] underline-offset-2 hover:underline'

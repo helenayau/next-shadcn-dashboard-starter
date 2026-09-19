@@ -60,7 +60,7 @@ export const registrationStepSchemas = [
  * third of the form column; `title` is the heading above that step's fields.
  */
 export const registrationSteps = [
-  { label: 'Your name', title: 'Tell us who you are' },
-  { label: 'Contact info', title: 'How can we reach you?' },
-  { label: 'Consent', title: 'Secure your account' }
+  { label: 'Nice to meet you', title: "Let's start with your name" },
+  { label: 'Staying in touch', title: 'How can we reach you?' },
+  { label: 'Protecting you', title: 'One last thing to protect you' }
 ] as const;

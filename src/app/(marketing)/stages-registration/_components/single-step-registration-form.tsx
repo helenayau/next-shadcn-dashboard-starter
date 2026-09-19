@@ -37,14 +37,14 @@ export function SingleStepRegistrationForm() {
         void form.handleSubmit();
       }}
       noValidate
-      className={`mt-10 flex flex-col gap-6 ${pruClass.formWidth}`}
+      className={`mt-12 flex flex-col gap-8 ${pruClass.formWidth}`}
       data-registration-variant='single-page'
     >
       <NameFields form={form} />
       <ContactFields form={form} />
       <PasswordFieldSection form={form} />
 
-      <div className='mt-2 flex flex-col gap-5'>
+      <div className='mt-4 flex flex-col gap-6'>
         <ConsentField form={form} />
         <ConsentCallout />
         {/* The mockup shows the CTA in its pale disabled state, so it unlocks

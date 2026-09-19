@@ -10,7 +10,7 @@ export function RegistrationShell({ children }: { children: React.ReactNode }) {
     <main className='min-h-svh bg-[#E2F4FF]'>
       <SiteHeader className='bg-[#001F45]' />
       <div className='mx-auto max-w-6xl px-6 py-10 sm:px-10 lg:py-14'>
-        <div className='w-full lg:max-w-[620px]'>{children}</div>
+        <div className='w-full lg:max-w-[760px]'>{children}</div>
       </div>
     </main>
   );
@@ -23,7 +23,7 @@ export function RegistrationHeading({ description }: { description: string }) {
       <h1 className='text-4xl leading-tight font-bold tracking-tight text-[#001F45] sm:text-5xl'>
         First, let&apos;s create your account
       </h1>
-      <p className='mt-4 text-base text-[#001F45]'>{description}</p>
+      <p className='mt-5 text-base text-[#001F45]'>{description}</p>
     </header>
   );
 }

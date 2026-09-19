@@ -49,13 +49,18 @@ function circleCentre(index: number) {
  * The circles are placed on equal grid columns with the rules laid over from
  * the same measurements, because the labels differ in width and letting flex
  * distribute around them pulls the circles off an even rhythm. Every label is
- * centred on its own circle, as the reference has it; the outer two therefore
- * sit a little proud of the form column, which the page gutter absorbs.
+ * centred on its own circle, as the reference has it, which means the outer
+ * two reach past their circles — hence the inset, which buys them that room
+ * inside the form column. It narrows on small screens, where spreading the
+ * circles wider is what keeps neighbouring labels from closing up. It has to
+ * be a margin: `left` on the absolute children resolves against this element's
+ * padding box, so padding here would offset the circles from the rules and
+ * labels.
  */
 function StepIndicator({ currentStep }: { currentStep: number }) {
   const lastIndex = TOTAL_STEPS - 1;
   return (
-    <div className='relative pb-7'>
+    <div className='relative mx-8 pb-7 sm:mx-12'>
       {registrationSteps.slice(1).map((step, i) => {
         const index = i + 1;
         return (
@@ -97,9 +102,9 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
               >
                 {stepNumber}
               </span>
-              {/* Centred on the circle and allowed to spill past the column
-                  edge, so the circles stay evenly spaced however long the
-                  labels are. */}
+              {/* Positioned from the same measurement as the circle rather
+                  than sitting under it in flow, so the circles keep an even
+                  rhythm however long the labels are. */}
               <span
                 className={`absolute top-11 text-[13px] leading-tight whitespace-nowrap ${
                   isCurrent ? 'font-bold text-[#001F45]' : 'font-normal text-[#5A6A7A]'
@@ -159,12 +164,12 @@ export function MultiStepRegistrationForm() {
       className={`mt-12 flex flex-col gap-10 ${pruClass.formWidth}`}
       data-registration-variant='multi-step'
     >
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col gap-6'>
         <p className='text-sm font-semibold text-[#001F45]/70'>
           Step {currentStep} of {TOTAL_STEPS}
         </p>
         <StepIndicator currentStep={currentStep} />
-        <h2 className='mt-3 text-2xl font-bold text-[#001F45]'>
+        <h2 className='mt-4 text-2xl font-bold text-[#001F45]'>
           {registrationSteps[currentStep - 1].title}
         </h2>
       </div>

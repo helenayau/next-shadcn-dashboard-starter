@@ -81,7 +81,7 @@ export const NameFields = withForm({
   ...sectionShape,
   render: function NameFieldsRender({ form }) {
     return (
-      <div className='grid gap-5 sm:grid-cols-2 sm:gap-4'>
+      <div className='grid gap-6 sm:grid-cols-2 sm:gap-5'>
         <form.Field
           name='firstName'
           children={(field) => (
@@ -121,7 +121,7 @@ export const ContactFields = withForm({
   ...sectionShape,
   render: function ContactFieldsRender({ form }) {
     return (
-      <div className='grid gap-5'>
+      <div className='grid gap-6'>
         <form.Field
           name='email'
           children={(field) => (
