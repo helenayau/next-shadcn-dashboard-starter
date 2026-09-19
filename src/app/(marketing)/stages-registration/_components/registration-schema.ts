@@ -54,8 +54,13 @@ export const registrationStepSchemas = [
   registrationSchema.pick({ password: true, consent: true })
 ];
 
-export const registrationStepTitles = [
-  'Tell us who you are',
-  'How can we reach you?',
-  'Secure your account'
+/**
+ * Step copy for the multi-step arm. `label` is the short name shown under
+ * each dot in the progress rail, so it has to stay narrow enough to sit in a
+ * third of the form column; `title` is the heading above that step's fields.
+ */
+export const registrationSteps = [
+  { label: 'Your name', title: 'Tell us who you are' },
+  { label: 'Contact details', title: 'How can we reach you?' },
+  { label: 'Password', title: 'Secure your account' }
 ] as const;
