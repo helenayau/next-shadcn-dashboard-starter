@@ -57,10 +57,12 @@ export const registrationStepSchemas = [
 /**
  * Step copy for the multi-step arm. `label` is the short name shown under
  * each dot in the progress rail, so it has to stay narrow enough to sit in a
- * third of the form column; `title` is the heading above that step's fields.
+ * third of the form column; `title` replaces the supporting line under the
+ * h1 for that step, in the same copy treatment rather than as a second
+ * heading.
  */
 export const registrationSteps = [
-  { label: 'Your name', title: "Let's start with your name" },
+  { label: 'Name', title: "Let's start with your name" },
   { label: 'Contact info', title: 'How can we reach you?' },
   { label: 'Password', title: "Let's set your password" }
 ] as const;

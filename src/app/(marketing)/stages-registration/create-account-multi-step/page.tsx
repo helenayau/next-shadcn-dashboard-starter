@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { RegistrationHeading, RegistrationShell } from '../_components/registration-shell';
+import { RegistrationShell } from '../_components/registration-shell';
 import { MultiStepRegistrationForm } from '../_components/multi-step-registration-form';
 
 export const metadata: Metadata = {
@@ -10,11 +10,13 @@ export const metadata: Metadata = {
  * Variant B of the registration A/B test: the same fields as variant A,
  * paginated across three steps. Variant A lives at
  * `/stages-registration/create-account`.
+ *
+ * The h1 and its supporting line come from the form here rather than from the
+ * page, because the supporting line is the current step's own copy.
  */
 export default function CreateAccountMultiStepPage() {
   return (
     <RegistrationShell>
-      <RegistrationHeading description='Setting up your account and password now helps protect the information you share.' />
       <MultiStepRegistrationForm />
     </RegistrationShell>
   );
