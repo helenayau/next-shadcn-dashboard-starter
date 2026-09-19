@@ -25,7 +25,7 @@ import { pruClass } from './registration-theme';
 
 const TOTAL_STEPS = registrationSteps.length;
 
-const CIRCLE_PX = 32;
+const CIRCLE_PX = 40;
 /** How far a rule stops short of the circle it runs into. */
 const CLEARANCE_PX = 16;
 
@@ -40,34 +40,31 @@ function circleCentre(index: number) {
 }
 
 /**
- * Numbered progress rail, built to the reference mockup: 32px circles, the
- * reached ones filled navy with a white numeral and the rest pale grey, joined
- * by thin grey rules that stop short of each circle. Numerals throughout — the
- * reference uses no checkmarks — so the current step is marked by its bold
- * navy label rather than by a different glyph.
+ * Numbered progress rail, built to the reference mockup: the reached circles
+ * filled navy with a white numeral and the rest pale grey, joined by thin grey
+ * rules that stop short of each circle. Numerals throughout — the reference
+ * uses no checkmarks — so the current step is marked by its bold navy label
+ * rather than by a different glyph.
  *
- * The circles are placed on equal grid columns with the rules laid over from
- * the same measurements, because the labels differ in width and letting flex
- * distribute around them pulls the circles off an even rhythm. Every label is
- * centred on its own circle, as the reference has it, which means the outer
- * two reach past their circles — hence the inset, which buys them that room
- * inside the form column. It narrows on small screens, where spreading the
- * circles wider is what keeps neighbouring labels from closing up. It has to
- * be a margin: `left` on the absolute children resolves against this element's
- * padding box, so padding here would offset the circles from the rules and
- * labels.
+ * The rail spans exactly the width of the fields below it, so the outer
+ * circles line up with the edges of the inputs. The circles are placed on
+ * equal grid columns with the rules laid over from the same measurements,
+ * because the labels differ in width and letting flex distribute around them
+ * pulls the circles off an even rhythm. Every label is centred on its own
+ * circle, as the reference has it, so the outer two reach a little past the
+ * column; the page gutter absorbs that.
  */
 function StepIndicator({ currentStep }: { currentStep: number }) {
   const lastIndex = TOTAL_STEPS - 1;
   return (
-    <div className='relative mx-8 pb-7 sm:mx-12'>
+    <div className='relative pb-8'>
       {registrationSteps.slice(1).map((step, i) => {
         const index = i + 1;
         return (
           <span
             key={step.label}
             aria-hidden
-            className={`absolute top-[15px] h-0.5 ${
+            className={`absolute top-[19px] h-0.5 ${
               index < currentStep ? 'bg-[#001F45]' : 'bg-[#D0D8E4]'
             }`}
             style={{
@@ -96,7 +93,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
             <li key={step.label} className={`flex ${align}`}>
               <span
                 aria-current={isCurrent ? 'step' : undefined}
-                className={`flex size-8 items-center justify-center rounded-full text-sm font-bold ${
+                className={`flex size-10 items-center justify-center rounded-full text-base font-bold ${
                   isReached ? 'bg-[#001F45] text-white' : 'bg-[#D0D8E4] text-[#4A5A6A]'
                 }`}
               >
@@ -106,7 +103,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
                   than sitting under it in flow, so the circles keep an even
                   rhythm however long the labels are. */}
               <span
-                className={`absolute top-11 text-[13px] leading-tight whitespace-nowrap ${
+                className={`absolute top-[52px] text-[15px] leading-tight whitespace-nowrap ${
                   isCurrent ? 'font-bold text-[#001F45]' : 'font-normal text-[#5A6A7A]'
                 }`}
                 style={{ left: circleCentre(index), transform: 'translateX(-50%)' }}
@@ -165,9 +162,6 @@ export function MultiStepRegistrationForm() {
       data-registration-variant='multi-step'
     >
       <div className='flex flex-col gap-6'>
-        <p className='text-sm font-semibold text-[#001F45]/70'>
-          Step {currentStep} of {TOTAL_STEPS}
-        </p>
         <StepIndicator currentStep={currentStep} />
         <h2 className='mt-4 text-2xl font-bold text-[#001F45]'>
           {registrationSteps[currentStep - 1].title}
