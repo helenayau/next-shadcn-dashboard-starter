@@ -1,6 +1,5 @@
 'use client';
 
-import { Fragment } from 'react';
 import { revalidateLogic } from '@tanstack/react-form';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
@@ -27,47 +26,52 @@ import { pruClass } from './registration-theme';
 const TOTAL_STEPS = registrationSteps.length;
 
 /**
- * Numbered progress rail with a label under each dot. The connector sits at
- * `mt-3.5` so it meets the middle of the 28px dots rather than the middle of
- * the dot-plus-label column.
+ * Numbered progress rail with a label under each dot.
+ *
+ * Equal-width grid columns rather than a flex row, so the three steps space
+ * themselves evenly across the whole form column at any width. Each
+ * connector is drawn from its own column's centre back to the previous
+ * one's, and the dots sit above it on `z-10` with an opaque fill so the line
+ * passes behind them instead of through them.
  */
 function StepIndicator({ currentStep }: { currentStep: number }) {
   return (
-    <ol className='flex items-start' aria-label={`Step ${currentStep} of ${TOTAL_STEPS}`}>
+    <ol className='grid grid-cols-3' aria-label={`Step ${currentStep} of ${TOTAL_STEPS}`}>
       {registrationSteps.map((step, index) => {
         const stepNumber = index + 1;
         const isDone = stepNumber < currentStep;
         const isCurrent = stepNumber === currentStep;
         return (
-          <Fragment key={step.label}>
-            <li className='flex w-24 shrink-0 flex-col items-center gap-2 text-center'>
-              <span
-                aria-current={isCurrent ? 'step' : undefined}
-                className={`flex size-7 items-center justify-center rounded-full border text-xs font-bold ${
-                  isDone || isCurrent
-                    ? 'border-[#001F45] bg-[#001F45] text-white'
-                    : 'border-[#001F45]/30 bg-transparent text-[#001F45]/50'
-                }`}
-              >
-                {isDone ? <Icons.check className='size-4' aria-hidden /> : stepNumber}
-              </span>
-              <span
-                className={`text-xs leading-tight ${
-                  isCurrent ? 'font-bold text-[#001F45]' : 'font-medium text-[#001F45]/60'
-                }`}
-              >
-                {step.label}
-              </span>
-            </li>
-            {stepNumber < TOTAL_STEPS && (
+          <li
+            key={step.label}
+            className='relative flex flex-col items-center gap-3 px-1 text-center'
+          >
+            {index > 0 && (
               <span
                 aria-hidden
-                className={`mt-3.5 h-0.5 min-w-4 flex-1 ${
-                  isDone ? 'bg-[#001F45]' : 'bg-[#001F45]/20'
+                className={`absolute top-6 right-1/2 -mt-px h-0.5 w-full ${
+                  stepNumber <= currentStep ? 'bg-[#001F45]' : 'bg-[#001F45]/25'
                 }`}
               />
             )}
-          </Fragment>
+            <span
+              aria-current={isCurrent ? 'step' : undefined}
+              className={`relative z-10 flex size-12 items-center justify-center rounded-full border-2 text-base font-bold ${
+                isDone || isCurrent
+                  ? 'border-[#001F45] bg-[#001F45] text-white'
+                  : 'border-[#001F45]/25 bg-[#E2F4FF] text-[#001F45]/50'
+              }`}
+            >
+              {isDone ? <Icons.check className='size-6' aria-hidden /> : stepNumber}
+            </span>
+            <span
+              className={`text-sm leading-tight ${
+                isCurrent ? 'font-bold text-[#001F45]' : 'font-medium text-[#001F45]/60'
+              }`}
+            >
+              {step.label}
+            </span>
+          </li>
         );
       })}
     </ol>
