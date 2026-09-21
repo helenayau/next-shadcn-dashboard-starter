@@ -64,12 +64,18 @@ export function SingleStepRegistrationForm() {
         <div className='mt-4 flex flex-col gap-6'>
           <ConsentField form={form} />
           <ConsentCallout />
-          {/* Pressable from the start: fields validate as they are left, and
-              a press with something still wrong paints that field's error
-              rather than leaving a button that never lights up. */}
+          {/* Faded until every field on the page is valid, but pressable
+              throughout: a press with something still wrong paints that
+              field's error rather than leaving a button that never lights
+              up. */}
           <form.Subscribe
-            selector={(state) => state.isSubmitting}
-            children={(isSubmitting) => <RegistrationCta disabled={isSubmitting} />}
+            selector={(state) => [state.values, state.isSubmitting] as const}
+            children={([values, isSubmitting]) => (
+              <RegistrationCta
+                disabled={isSubmitting}
+                inactive={!registrationSchema.safeParse(values).success}
+              />
+            )}
           />
         </div>
 

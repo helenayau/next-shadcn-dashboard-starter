@@ -287,13 +287,21 @@ export function ConsentDisclosure() {
  */
 export function RegistrationCta({
   disabled,
+  inactive = false,
   label = 'Get started'
 }: {
   disabled: boolean;
+  /** Fields on screen are not all valid yet: the button is faded so it reads
+   *  as not-ready, but stays pressable so a press can say what is missing. */
+  inactive?: boolean;
   label?: string;
 }) {
   return (
-    <Button type='submit' disabled={disabled} className={pruClass.cta}>
+    <Button
+      type='submit'
+      disabled={disabled}
+      className={`${pruClass.cta} ${inactive ? 'opacity-50' : ''}`}
+    >
       {label}
     </Button>
   );

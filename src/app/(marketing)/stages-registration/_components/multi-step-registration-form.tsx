@@ -186,15 +186,15 @@ export function MultiStepRegistrationForm() {
               Back
             </Button>
           )}
-          {/* Pressable whatever the fields hold, as in variant A: the step
-              gate paints the offending field's error on a blocked press, and
-              a button that silently refuses to light up tells a user nothing
-              about what is wrong. */}
+          {/* Faded until this step's fields are valid, as in variant A, but
+              pressable throughout: the step gate paints the offending
+              field's error on a blocked press. */}
           <form.Subscribe
-            selector={(state) => state.isSubmitting}
-            children={(isSubmitting) => (
+            selector={(state) => [state.values, state.isSubmitting] as const}
+            children={([values, isSubmitting]) => (
               <RegistrationCta
                 disabled={isSubmitting}
+                inactive={!currentValidator.safeParse(values).success}
                 label={currentStep === TOTAL_STEPS ? 'Get started' : 'Next'}
               />
             )}
