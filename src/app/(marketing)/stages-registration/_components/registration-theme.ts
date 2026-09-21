@@ -23,9 +23,9 @@ export const pruClass = {
   label: 'text-sm font-semibold text-[#001F45]',
   /** Page h1. */
   h1: 'text-4xl leading-tight font-bold tracking-tight text-[#001F45] sm:text-5xl',
-  /** The supporting line under the h1: 22px at every width, and held to the
+  /** The supporting line under the h1: 18px at every width, and held to the
    *  same measure as the fields so it breaks on the same column they do. */
-  copy: 'w-full max-w-[560px] text-[22px] leading-snug text-[#001F45]',
+  copy: 'w-full max-w-[560px] text-[18px] leading-snug text-[#001F45]',
   /** Measure of the form column. Widened once the right rail came out, so
    *  the fields and the step rail are not squeezed into a third of the page. */
   formWidth: 'w-full max-w-[560px]',
