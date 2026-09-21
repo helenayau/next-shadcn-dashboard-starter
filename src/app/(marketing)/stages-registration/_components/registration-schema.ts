@@ -63,10 +63,15 @@ export const registrationStepSchemas = [
  * each dot in the progress rail, so it has to stay narrow enough to sit in a
  * third of the form column; `title` replaces the supporting line under the
  * h1 for that step, in the same copy treatment rather than as a second
- * heading.
+ * heading. Step one carries the page's opening reassurance ahead of its own
+ * line; later steps need only their own, so the promise is not repeated.
  */
 export const registrationSteps = [
-  { label: 'Name', title: "Let's start with your name." },
+  {
+    label: 'Name',
+    title:
+      "Setting up your account and password now helps protect the information you share. Let's start with your name."
+  },
   { label: 'Contact info', title: 'How can we reach you?' },
   { label: 'Password', title: "Let's set your password." }
 ] as const;
