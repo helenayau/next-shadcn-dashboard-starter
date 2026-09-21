@@ -62,7 +62,7 @@ export const registrationStepSchemas = [
  * heading.
  */
 export const registrationSteps = [
-  { label: 'Name', title: "Let's start with your name" },
+  { label: 'Name', title: "Let's start with your name." },
   { label: 'Contact info', title: 'How can we reach you?' },
-  { label: 'Password', title: "Let's set your password" }
+  { label: 'Password', title: "Let's set your password." }
 ] as const;
