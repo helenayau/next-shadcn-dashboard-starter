@@ -279,14 +279,22 @@ export function ConsentDisclosure() {
 }
 
 /**
- * The CTA, shared so both arms show the same label and the same pale-blue
- * disabled treatment the mockup specifies. The button stays disabled until
- * the fields currently on screen satisfy the schema.
+ * The CTA, shared so both arms show the same pale-blue disabled treatment
+ * the mockup specifies. The button stays disabled until the fields currently
+ * on screen satisfy the schema. The label is "Get started" wherever the
+ * press creates the account — the consent line above it says as much — and
+ * "Next" only on a step that leads to another step.
  */
-export function RegistrationCta({ disabled }: { disabled: boolean }) {
+export function RegistrationCta({
+  disabled,
+  label = 'Get started'
+}: {
+  disabled: boolean;
+  label?: string;
+}) {
   return (
     <Button type='submit' disabled={disabled} className={pruClass.cta}>
-      Next
+      {label}
     </Button>
   );
 }

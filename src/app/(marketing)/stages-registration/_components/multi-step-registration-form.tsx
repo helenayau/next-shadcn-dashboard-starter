@@ -186,14 +186,16 @@ export function MultiStepRegistrationForm() {
               Back
             </Button>
           )}
-          {/* Same disabled-until-valid rule as variant A, applied to the slice
-              of the schema this step is responsible for — so a user sees the
-              pale CTA unlock at the same point in both arms. */}
+          {/* Pressable whatever the fields hold, as in variant A: the step
+              gate paints the offending field's error on a blocked press, and
+              a button that silently refuses to light up tells a user nothing
+              about what is wrong. */}
           <form.Subscribe
-            selector={(state) => [state.values, state.isSubmitting] as const}
-            children={([values, isSubmitting]) => (
+            selector={(state) => state.isSubmitting}
+            children={(isSubmitting) => (
               <RegistrationCta
-                disabled={isSubmitting || !currentValidator.safeParse(values).success}
+                disabled={isSubmitting}
+                label={currentStep === TOTAL_STEPS ? 'Get started' : 'Next'}
               />
             )}
           />

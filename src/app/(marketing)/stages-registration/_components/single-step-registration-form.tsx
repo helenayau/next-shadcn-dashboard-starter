@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { revalidateLogic } from '@tanstack/react-form';
 import { useAppForm } from '@/lib/form';
 import {
   ConsentCallout,
@@ -28,7 +29,11 @@ export function SingleStepRegistrationForm() {
 
   const form = useAppForm({
     defaultValues: registrationDefaults,
-    validators: { onSubmit: registrationSchema },
+    /* Same validation timing as variant B: the first press paints whatever
+       is wrong, and from then on the fields revalidate as they are typed in.
+       Both arms have to tell a user the same thing at the same moment. */
+    validationLogic: revalidateLogic(),
+    validators: { onDynamic: registrationSchema },
     onSubmit: () => {
       setIsComplete(true);
     }
@@ -59,15 +64,12 @@ export function SingleStepRegistrationForm() {
         <div className='mt-4 flex flex-col gap-6'>
           <ConsentField form={form} />
           <ConsentCallout />
-          {/* The mockup shows the CTA in its pale disabled state, so it unlocks
-              only once every field on the page satisfies the schema. */}
+          {/* Pressable from the start: fields validate as they are left, and
+              a press with something still wrong paints that field's error
+              rather than leaving a button that never lights up. */}
           <form.Subscribe
-            selector={(state) => [state.values, state.isSubmitting] as const}
-            children={([values, isSubmitting]) => (
-              <RegistrationCta
-                disabled={isSubmitting || !registrationSchema.safeParse(values).success}
-              />
-            )}
+            selector={(state) => state.isSubmitting}
+            children={(isSubmitting) => <RegistrationCta disabled={isSubmitting} />}
           />
         </div>
 
