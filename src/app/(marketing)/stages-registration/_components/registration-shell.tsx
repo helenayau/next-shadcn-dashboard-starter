@@ -23,7 +23,8 @@ export function RegistrationHeading({ description }: { description: string }) {
       <h1 className='text-4xl leading-tight font-bold tracking-tight text-[#001F45] sm:text-5xl'>
         First, let&apos;s create your account
       </h1>
-      <p className='mt-5 text-lg text-[#001F45]'>{description}</p>
+      {/* Fixed 22px at every width, by request — no responsive step down. */}
+      <p className='mt-5 text-[22px] leading-snug text-[#001F45]'>{description}</p>
     </header>
   );
 }
