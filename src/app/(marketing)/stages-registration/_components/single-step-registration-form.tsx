@@ -24,18 +24,18 @@ import { pruClass } from './registration-theme';
  * confirmation screen.
  */
 export function SingleStepRegistrationForm() {
-  const [submittedEmail, setSubmittedEmail] = React.useState<string | null>(null);
+  const [isComplete, setIsComplete] = React.useState(false);
 
   const form = useAppForm({
     defaultValues: registrationDefaults,
     validators: { onSubmit: registrationSchema },
-    onSubmit: ({ value }) => {
-      setSubmittedEmail(value.email);
+    onSubmit: () => {
+      setIsComplete(true);
     }
   });
 
-  if (submittedEmail) {
-    return <RegistrationSuccess email={submittedEmail} />;
+  if (isComplete) {
+    return <RegistrationSuccess />;
   }
 
   return (

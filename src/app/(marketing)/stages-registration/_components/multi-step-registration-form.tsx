@@ -119,7 +119,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
  * screen.
  */
 export function MultiStepRegistrationForm() {
-  const [submittedEmail, setSubmittedEmail] = React.useState<string | null>(null);
+  const [isComplete, setIsComplete] = React.useState(false);
 
   const {
     currentValidator,
@@ -134,15 +134,15 @@ export function MultiStepRegistrationForm() {
     defaultValues: registrationDefaults,
     validationLogic: revalidateLogic(),
     validators: { onDynamic: currentValidator as typeof registrationSchema },
-    onSubmit: ({ value }) => {
-      setSubmittedEmail(value.email);
+    onSubmit: () => {
+      setIsComplete(true);
     }
   });
 
   const isLastStep = step.isCompleted;
 
-  if (submittedEmail) {
-    return <RegistrationSuccess email={submittedEmail} />;
+  if (isComplete) {
+    return <RegistrationSuccess />;
   }
 
   return (
