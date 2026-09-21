@@ -1,3 +1,4 @@
+import { pruClass } from './registration-theme';
 import { SiteHeader } from './site-header';
 
 /**
@@ -20,11 +21,8 @@ export function RegistrationShell({ children }: { children: React.ReactNode }) {
 export function RegistrationHeading({ description }: { description: string }) {
   return (
     <header>
-      <h1 className='text-4xl leading-tight font-bold tracking-tight text-[#001F45] sm:text-5xl'>
-        First, let&apos;s create your account
-      </h1>
-      {/* Fixed 22px at every width, by request — no responsive step down. */}
-      <p className='mt-5 text-[22px] leading-snug text-[#001F45]'>{description}</p>
+      <h1 className={pruClass.h1}>First, let&apos;s create your account</h1>
+      <p className={`mt-5 ${pruClass.copy}`}>{description}</p>
     </header>
   );
 }

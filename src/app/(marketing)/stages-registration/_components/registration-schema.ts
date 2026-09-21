@@ -47,6 +47,10 @@ export const registrationDefaults: RegistrationValues = {
   consent: false
 };
 
+/** The supporting line under the h1 before any step copy replaces it. */
+export const registrationIntro =
+  'Setting up your account and password now helps protect the information you share.';
+
 /** Step slices for the multi-step arm — same rules, split three ways. */
 export const registrationStepSchemas = [
   registrationSchema.pick({ firstName: true, lastName: true }),

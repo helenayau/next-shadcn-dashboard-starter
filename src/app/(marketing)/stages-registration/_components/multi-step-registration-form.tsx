@@ -1,7 +1,7 @@
 'use client';
 
+import * as React from 'react';
 import { revalidateLogic } from '@tanstack/react-form';
-import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 import { useAppForm } from '@/lib/form';
@@ -22,6 +22,7 @@ import {
   registrationSteps
 } from './registration-schema';
 import { RegistrationHeading } from './registration-shell';
+import { RegistrationSuccess } from './registration-success';
 import { pruClass } from './registration-theme';
 
 const TOTAL_STEPS = registrationSteps.length;
@@ -114,9 +115,12 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
  * render the shared `withForm` sections, so the fields, labels and validation
  * are identical. The step's own line of copy replaces the supporting line
  * under the h1 rather than adding a second heading, so the page carries one
- * title however many steps it has.
+ * title however many steps it has. Both arms end on the shared confirmation
+ * screen.
  */
 export function MultiStepRegistrationForm() {
+  const [submittedEmail, setSubmittedEmail] = React.useState<string | null>(null);
+
   const {
     currentValidator,
     step,
@@ -130,12 +134,16 @@ export function MultiStepRegistrationForm() {
     defaultValues: registrationDefaults,
     validationLogic: revalidateLogic(),
     validators: { onDynamic: currentValidator as typeof registrationSchema },
-    onSubmit: () => {
-      toast.success('Account created');
+    onSubmit: ({ value }) => {
+      setSubmittedEmail(value.email);
     }
   });
 
   const isLastStep = step.isCompleted;
+
+  if (submittedEmail) {
+    return <RegistrationSuccess email={submittedEmail} />;
+  }
 
   return (
     <>

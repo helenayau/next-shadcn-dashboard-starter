@@ -21,6 +21,11 @@ export const pruClass = {
   input:
     'h-11 w-full rounded-none border border-[#001F45] bg-white px-3 text-base text-[#001F45] transition-shadow outline-none placeholder:text-[#001F45]/40 focus-visible:ring-2 focus-visible:ring-[#0066CC] focus-visible:ring-offset-1 aria-invalid:border-destructive aria-invalid:ring-0 md:text-sm',
   label: 'text-sm font-semibold text-[#001F45]',
+  /** Page h1. */
+  h1: 'text-4xl leading-tight font-bold tracking-tight text-[#001F45] sm:text-5xl',
+  /** The supporting line under the h1: 22px at every width, and held to the
+   *  same measure as the fields so it breaks on the same column they do. */
+  copy: 'w-full max-w-[560px] text-[22px] leading-snug text-[#001F45]',
   /** Measure of the form column. Widened once the right rail came out, so
    *  the fields and the step rail are not squeezed into a third of the page. */
   formWidth: 'w-full max-w-[560px]',
