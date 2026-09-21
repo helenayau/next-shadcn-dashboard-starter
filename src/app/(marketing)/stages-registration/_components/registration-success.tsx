@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 import { pruClass } from './registration-theme';
 
@@ -10,7 +9,8 @@ import { pruClass } from './registration-theme';
  * is shared so the A/B test still measures pagination only: whichever way a
  * user filled the fields, the ending is identical.
  *
- * One line and one way forward, by request. Focus moves to the heading on
+ * The confirmation itself is the heading and the welcome sits under it in
+ * the same copy treatment the steps use. Focus moves to the heading on
  * mount, so a screen-reader or keyboard user is told the form is gone and
  * the page has changed.
  */
@@ -36,12 +36,9 @@ export function RegistrationSuccess() {
         tabIndex={-1}
         className={`mt-6 outline-none ${pruClass.h1}`}
       >
-        Account created! Welcome to Prudential.
+        Account created!
       </h1>
-
-      <Button type='button' className={`mt-10 ${pruClass.cta}`}>
-        Go to your account
-      </Button>
+      <p className={`mt-5 ${pruClass.copy}`}>Welcome to Prudential.</p>
     </section>
   );
 }
