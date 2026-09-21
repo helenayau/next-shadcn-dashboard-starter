@@ -30,9 +30,14 @@ const CIRCLE_PX = 40;
 /** How far a rule stops short of the circle it runs into. */
 const CLEARANCE_PX = 16;
 
-/** Where step `index`'s column centres, measured from the rail's left edge. */
-function columnCentre(index: number) {
-  return `${(((index + 0.5) / TOTAL_STEPS) * 100).toFixed(4)}%`;
+/**
+ * Where step `index`'s circle centres, measured from the rail's left edge.
+ * The first and last circles sit flush with the rail's edges, so the centres
+ * span `100% - CIRCLE_PX` and divide evenly between them.
+ */
+function circleCentre(index: number) {
+  const ratio = index / (TOTAL_STEPS - 1);
+  return `calc(${CIRCLE_PX / 2}px + (100% - ${CIRCLE_PX}px) * ${ratio})`;
 }
 
 /**
@@ -42,11 +47,11 @@ function columnCentre(index: number) {
  * uses no checkmarks — so the current step is marked by its bold navy label
  * rather than by a different glyph.
  *
- * The rail is the width of the fields below it and each step owns an equal
- * third of it, with the circle and its label centred together in that third.
- * Centring the outer circles on the column rather than on the rail's edge is
- * what keeps their labels — which are wider than the circles — inside the
- * form column instead of spilling past the inputs.
+ * The rail is the width of the fields below it: the first circle sits flush
+ * with the left edge of the inputs and the last with their right edge. The
+ * outer labels are wider than their circles, so they align to those same
+ * edges rather than centring on the circle — centring them is what pushed
+ * them past the form column. The middle label centres on its circle.
  */
 function StepIndicator({ currentStep }: { currentStep: number }) {
   return (
@@ -61,8 +66,8 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
               index < currentStep ? 'bg-[#001F45]' : 'bg-[#D0D8E4]'
             }`}
             style={{
-              left: `calc(${columnCentre(index - 1)} + ${CIRCLE_PX / 2 + CLEARANCE_PX}px)`,
-              right: `calc(100% - (${columnCentre(index)} - ${CIRCLE_PX / 2 + CLEARANCE_PX}px))`
+              left: `calc(${circleCentre(index - 1)} + ${CIRCLE_PX / 2 + CLEARANCE_PX}px)`,
+              right: `calc(100% - (${circleCentre(index)} - ${CIRCLE_PX / 2 + CLEARANCE_PX}px))`
             }}
           />
         );
@@ -76,8 +81,10 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
           const stepNumber = index + 1;
           const isReached = stepNumber <= currentStep;
           const isCurrent = stepNumber === currentStep;
+          const align =
+            index === 0 ? 'items-start' : index === TOTAL_STEPS - 1 ? 'items-end' : 'items-center';
           return (
-            <li key={step.label} className='flex flex-col items-center gap-3'>
+            <li key={step.label} className={`flex flex-col gap-3 ${align}`}>
               <span
                 aria-current={isCurrent ? 'step' : undefined}
                 className={`flex size-10 items-center justify-center rounded-full text-base font-bold ${
