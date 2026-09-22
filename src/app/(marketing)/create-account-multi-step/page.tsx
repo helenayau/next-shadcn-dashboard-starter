@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { RegistrationShell } from '../_components/registration-shell';
-import { MultiStepRegistrationForm } from '../_components/multi-step-registration-form';
+import { RegistrationShell } from '../stages-registration/_components/registration-shell';
+import { MultiStepRegistrationForm } from '../stages-registration/_components/multi-step-registration-form';
 
 export const metadata: Metadata = {
   title: 'Create your account'
@@ -8,8 +8,7 @@ export const metadata: Metadata = {
 
 /**
  * Variant B of the registration A/B test: the same fields as variant A,
- * paginated across three steps. Variant A lives at
- * `/stages-registration/create-account`.
+ * paginated across three steps. Variant A lives at `/create-account`.
  *
  * The h1 and its supporting line come from the form here rather than from the
  * page, because the supporting line is the current step's own copy.
