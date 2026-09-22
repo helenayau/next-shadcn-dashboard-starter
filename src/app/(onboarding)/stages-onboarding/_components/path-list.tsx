@@ -44,9 +44,7 @@ export function PathList() {
       router.push(paceDestination(pace));
       return;
     }
-    const href = pathDestination(path as 'existing' | 'open-account');
-    if (href.startsWith('http')) window.location.assign(href);
-    else router.push(href);
+    router.push(pathDestination(path as 'existing' | 'open-account'));
   }
 
   return (

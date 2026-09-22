@@ -12,8 +12,8 @@ export const stages = {
   cardBorder: '#7ECAF2'
 } as const;
 
-/** The real Prudential "Access your personal accounts" sign-in page. */
-export const PRUDENTIAL_LOGIN_URL = 'https://www.prudential.com/login';
+/** A static mockup of Prudential's sign-in page; the prototype never links out. */
+export const ACCOUNT_ACCESS_PATH = '/stages-onboarding/account-access';
 
 export const ADVISOR_PATH = '/stages-onboarding/connect-with-advisor';
 
@@ -113,7 +113,7 @@ export function needsPace(path: PathId | null) {
 
 /** Where a path goes when it skips the pace question. */
 export function pathDestination(path: 'existing' | 'open-account') {
-  return path === 'existing' ? PRUDENTIAL_LOGIN_URL : ADVISOR_PATH;
+  return path === 'existing' ? ACCOUNT_ACCESS_PATH : ADVISOR_PATH;
 }
 
 export function paceDestination(pace: PaceId) {

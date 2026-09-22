@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useEffect, useId, useRef, useState } from 'react';
 import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
@@ -53,10 +52,10 @@ function formatPhone(value: string) {
 
 /**
  * "Connect with an advisor": pick a date and a half-hour slot, leave contact
- * details, and schedule. Everything is local to the prototype; nothing is sent.
+ * details, and schedule. Everything is local to the prototype; nothing is sent,
+ * and nothing on the page leads anywhere else (Cancel is drawn but inert).
  */
 export function AdvisorCallForm() {
-  const router = useRouter();
   // Today is read on the client only, so the calendar never disagrees with
   // the server's clock (or time zone) during hydration.
   const [today, setToday] = useState<Date | null>(null);
@@ -66,7 +65,6 @@ export function AdvisorCallForm() {
   const [calendarOpen, setCalendarOpen] = useState(true);
   const [timeZone, setTimeZone] = useState(TIME_ZONES[0]);
   const [time, setTime] = useState<string | null>(null);
-  const [showExpect, setShowExpect] = useState(false);
   const [contact, setContact] = useState<Contact>({
     firstName: '',
     lastName: '',
@@ -255,20 +253,9 @@ export function AdvisorCallForm() {
           </div>
           {errors.time && <FieldError>{errors.time}</FieldError>}
 
-          <button
-            type='button'
-            aria-expanded={showExpect}
-            onClick={() => setShowExpect((s) => !s)}
-            className='mt-9 text-[16px] font-semibold text-[#0066CC] hover:underline'
-          >
+          <p className='mt-9 text-[16px] font-semibold text-[#0066CC]'>
             What to expect for this call?
-          </button>
-          {showExpect && (
-            <p className='mt-2 text-[15px] leading-relaxed'>
-              You’ll meet one-on-one with an advisor over Zoom for 30 minutes to talk through your
-              goals, ask questions, and agree on next steps together.
-            </p>
-          )}
+          </p>
         </div>
       </div>
 
@@ -315,8 +302,7 @@ export function AdvisorCallForm() {
       <div className='mt-5 flex flex-wrap gap-6'>
         <button
           type='button'
-          onClick={() => router.back()}
-          className='h-11 w-[200px] rounded-full border-2 border-[#001F45] bg-white text-[16px] font-bold hover:bg-[#F3FBFF] focus-visible:ring-2 focus-visible:ring-[#0066CC] focus-visible:ring-offset-2 focus-visible:outline-none'
+          className='h-11 w-[200px] rounded-full border-2 border-[#001F45] bg-white text-[16px] font-bold focus-visible:ring-2 focus-visible:ring-[#0066CC] focus-visible:ring-offset-2 focus-visible:outline-none'
         >
           Cancel
         </button>

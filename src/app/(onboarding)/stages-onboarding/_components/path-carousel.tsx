@@ -40,9 +40,7 @@ export function PathCarousel() {
       window.scrollTo({ top: 0 });
       return;
     }
-    const href = pathDestination(path as 'existing' | 'open-account');
-    if (href.startsWith('http')) window.location.assign(href);
-    else router.push(href);
+    router.push(pathDestination(path as 'existing' | 'open-account'));
   }
 
   if (chosen) {
@@ -147,7 +145,7 @@ export function PathCarousel() {
             <span
               className={cn(
                 'block rounded-full transition-all',
-                i === index ? 'size-3.5 bg-[#007A78]' : 'size-2.5 bg-[#9DB4CB]'
+                i === index ? 'size-3.5 bg-[#15375B]' : 'size-2.5 bg-[#9DB4CB]'
               )}
             />
           </button>

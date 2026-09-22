@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { AdvisorCallForm } from '../_components/advisor-call-form';
 import { StagesHeader } from '../_components/stages-header';
-import { StagesSidebar } from '../_components/stages-sidebar';
 
 export const metadata: Metadata = {
   title: { absolute: 'Schedule a call | Prudential Stages for Retirement' }
@@ -11,9 +10,8 @@ export const metadata: Metadata = {
 /** Where "I want to open an account" and "Connect with an advisor" lead. */
 export default function ConnectWithAdvisorPage() {
   return (
-    <div className='flex min-h-svh'>
-      <StagesSidebar />
-      <main className='min-w-0 flex-1'>
+    <div className='min-h-svh'>
+      <main>
         <StagesHeader />
         <div className='px-4 pt-10 pb-20 sm:px-[61px] sm:pt-[70px]'>
           <div className='flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-11'>
