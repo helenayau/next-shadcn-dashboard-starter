@@ -24,10 +24,11 @@ export const pruClass = {
    *  fields grey. This page is a fixed light design, so it opts out. */
   input:
     'h-11 w-full rounded-none border border-[#001F45] bg-white px-3 text-base text-[#001F45] transition-shadow outline-none placeholder:text-[#001F45]/40 focus-visible:ring-2 focus-visible:ring-[#0066CC] focus-visible:ring-offset-1 aria-invalid:border-destructive aria-invalid:ring-0 md:text-sm dark:bg-white dark:aria-invalid:border-destructive dark:aria-invalid:ring-0',
-  /** Consent checkbox: square, navy hairline, navy when checked. Pinned to
-   *  light for the same reason as `input`. */
+  /** Consent checkbox: square, navy hairline, and white whether or not it is
+   *  checked — checking it adds a navy check mark rather than filling the box.
+   *  Pinned to light for the same reason as `input`. */
   checkbox:
-    'size-5 rounded-none border-[#001F45] bg-white data-checked:border-[#001F45] data-checked:bg-[#001F45] dark:bg-white dark:data-checked:bg-[#001F45]',
+    'size-5 rounded-none border-[#001F45] bg-white text-[#001F45] data-checked:border-[#001F45] data-checked:bg-white data-checked:text-[#001F45] dark:bg-white dark:data-checked:bg-white',
   label: 'text-sm font-semibold text-[#001F45]',
   /** Page h1. */
   h1: 'text-4xl leading-tight font-bold tracking-tight text-[#001F45] sm:text-5xl',
