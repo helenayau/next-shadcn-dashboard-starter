@@ -70,7 +70,7 @@ export const retirementPaths: RetirementPath[] = [
       src: '/stages-onboarding/existing-customer.png',
       width: 207,
       height: 157,
-      displayWidth: 257
+      displayWidth: 233
     }
   },
   {
