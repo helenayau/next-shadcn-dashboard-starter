@@ -19,6 +19,7 @@ export default function AccountAccessPage() {
         width={2160}
         height={1585}
         priority
+        unoptimized
         draggable={false}
         className='mx-auto h-auto w-full max-w-[1440px] select-none'
       />

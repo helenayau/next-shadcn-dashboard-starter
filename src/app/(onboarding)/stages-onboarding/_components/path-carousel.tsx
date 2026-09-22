@@ -103,6 +103,7 @@ export function PathCarousel() {
                     alt=''
                     width={path.image.width}
                     height={path.image.height}
+                    unoptimized
                     draggable={false}
                     style={{ width: path.image.displayWidth }}
                     className='h-auto max-w-full select-none'

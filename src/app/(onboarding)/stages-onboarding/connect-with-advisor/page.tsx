@@ -18,9 +18,10 @@ export default function ConnectWithAdvisorPage() {
             <Image
               src='/stages-onboarding/schedule-call.png'
               alt=''
-              width={237}
-              height={183}
+              width={474}
+              height={366}
               priority
+              unoptimized
               className='h-auto w-[158px] shrink-0 sm:-mt-3'
             />
             <div>

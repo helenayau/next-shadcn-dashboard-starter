@@ -42,8 +42,8 @@ export const retirementPaths: RetirementPath[] = [
     carouselDescription: 'See if you’re on track for your retirement goals.',
     image: {
       src: '/stages-onboarding/planning-ahead.png',
-      width: 174,
-      height: 149,
+      width: 726,
+      height: 624,
       displayWidth: 242
     }
   },
@@ -55,8 +55,8 @@ export const retirementPaths: RetirementPath[] = [
     carouselDescription: 'Get a clear picture of your current savings.',
     image: {
       src: '/stages-onboarding/already-retired.png',
-      width: 276,
-      height: 152,
+      width: 900,
+      height: 498,
       displayWidth: 300
     }
   },
@@ -68,8 +68,8 @@ export const retirementPaths: RetirementPath[] = [
     carouselDescription: 'Sign in to view and manage your accounts.',
     image: {
       src: '/stages-onboarding/existing-customer.png',
-      width: 207,
-      height: 157,
+      width: 699,
+      height: 531,
       displayWidth: 233
     }
   },
@@ -81,8 +81,8 @@ export const retirementPaths: RetirementPath[] = [
     carouselDescription: 'Buy life insurance or open an investment account.',
     image: {
       src: '/stages-onboarding/open-an-account.png',
-      width: 275,
-      height: 171,
+      width: 852,
+      height: 531,
       displayWidth: 284
     }
   }
