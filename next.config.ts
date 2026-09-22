@@ -24,6 +24,20 @@ const baseConfig: NextConfig = {
     ]
   },
   transpilePackages: ['geist'],
+  // The Stages onboarding prototype is also served from its own Vercel
+  // project, `stages-onboarding`. On that host the bare address shows the
+  // carousel, so the link participants see is just the project name.
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/',
+          has: [{ type: 'host', value: 'stages-onboarding(-[a-z0-9-]+)?\\.vercel\\.app' }],
+          destination: '/stages-onboarding/carousel'
+        }
+      ]
+    };
+  },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production'
   }
