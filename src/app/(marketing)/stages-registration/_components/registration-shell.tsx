@@ -8,7 +8,7 @@ import { SiteHeader } from './site-header';
  */
 export function RegistrationShell({ children }: { children: React.ReactNode }) {
   return (
-    <main className='min-h-svh bg-[#E2F4FF]'>
+    <main className='min-h-svh bg-[#E2F4FF] [color-scheme:light]'>
       <SiteHeader className='bg-[#001F45]' />
       <div className='mx-auto max-w-6xl px-6 py-10 sm:px-10 lg:py-14'>
         <div className='w-full lg:max-w-[760px]'>{children}</div>

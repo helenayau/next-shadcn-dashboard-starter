@@ -228,7 +228,7 @@ export const ConsentField = withForm({
                 onBlur={field.handleBlur}
                 aria-invalid={isInvalid}
                 aria-describedby={isInvalid ? 'consent-error' : undefined}
-                className='mt-0.5 size-5 rounded-none border-[#001F45] data-[checked]:border-[#001F45] data-[checked]:bg-[#001F45]'
+                className={`mt-0.5 ${pruClass.checkbox}`}
               />
               <div className='grid gap-1'>
                 {/* FieldLabel is `flex w-fit` by default — the consent copy is
