@@ -9,7 +9,9 @@ import {
   IconBrandGithub,
   IconBrandTwitter,
   IconBrightness,
+  IconBuildingCastle,
   IconCalendar,
+  IconChartBar,
   IconCheck,
   IconChecks,
   IconChevronDown,
@@ -28,6 +30,7 @@ import {
   IconCode,
   IconCommand,
   IconCreditCard,
+  IconCurrencyDollar,
   IconDeviceLaptop,
   IconDots,
   IconDotsVertical,
@@ -44,6 +47,7 @@ import {
   IconFolder,
   IconGripVertical,
   IconHelpCircle,
+  IconHome,
   IconInfoCircle,
   IconItalic,
   IconLayoutDashboard,
@@ -73,6 +77,7 @@ import {
   IconShare,
   IconSlash,
   IconSparkles,
+  IconSquareCheck,
   IconStack2,
   IconStar,
   IconSun,
@@ -223,5 +228,12 @@ export const Icons = {
   slash: IconSlash,
   calendar: IconCalendar,
   galleryVerticalEnd: IconStack2,
-  moreHorizontal: IconDots
+  moreHorizontal: IconDots,
+
+  // Stages app navigation
+  home: IconHome,
+  actionCenter: IconSquareCheck,
+  outlook: IconChartBar,
+  spending: IconCurrencyDollar,
+  sandbox: IconBuildingCastle
 };
