@@ -28,7 +28,9 @@ export type RetirementPath = {
   /** Copy as it appears on the carousel slide (the mockups word a few differently). */
   carouselTitle: string;
   carouselDescription: string;
-  image: { src: string; width: number; height: number };
+  /** `displayWidth` evens out how big each illustration looks: the crops
+   *  differ in shape, so each is scaled to roughly the same area. */
+  image: { src: string; width: number; height: number; displayWidth: number };
 };
 
 export const retirementPaths: RetirementPath[] = [
@@ -38,7 +40,12 @@ export const retirementPaths: RetirementPath[] = [
     listDescription: 'See if you’re on track to retire your way.',
     carouselTitle: 'I’m planning ahead',
     carouselDescription: 'See if you’re on track for your retirement goals.',
-    image: { src: '/stages-onboarding/planning-ahead.png', width: 174, height: 149 }
+    image: {
+      src: '/stages-onboarding/planning-ahead.png',
+      width: 174,
+      height: 149,
+      displayWidth: 242
+    }
   },
   {
     id: 'retired',
@@ -46,7 +53,12 @@ export const retirementPaths: RetirementPath[] = [
     listDescription: 'Get a clear picture of your current savings.',
     carouselTitle: 'I’m already retired',
     carouselDescription: 'Get a clear picture of your current savings.',
-    image: { src: '/stages-onboarding/already-retired.png', width: 276, height: 152 }
+    image: {
+      src: '/stages-onboarding/already-retired.png',
+      width: 276,
+      height: 152,
+      displayWidth: 300
+    }
   },
   {
     id: 'existing',
@@ -54,7 +66,12 @@ export const retirementPaths: RetirementPath[] = [
     listDescription: 'Sign in to view and manage your accounts.',
     carouselTitle: 'I’m an existing customer',
     carouselDescription: 'Sign in to view and manage your accounts.',
-    image: { src: '/stages-onboarding/existing-customer.png', width: 207, height: 157 }
+    image: {
+      src: '/stages-onboarding/existing-customer.png',
+      width: 207,
+      height: 157,
+      displayWidth: 257
+    }
   },
   {
     id: 'open-account',
@@ -62,7 +79,12 @@ export const retirementPaths: RetirementPath[] = [
     listDescription: 'Buy life insurance or open an investment account.',
     carouselTitle: 'I want to open an account',
     carouselDescription: 'Buy life insurance or open an investment account.',
-    image: { src: '/stages-onboarding/open-an-account.png', width: 275, height: 171 }
+    image: {
+      src: '/stages-onboarding/open-an-account.png',
+      width: 275,
+      height: 171,
+      displayWidth: 284
+    }
   }
 ];
 

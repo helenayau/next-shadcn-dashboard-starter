@@ -97,16 +97,17 @@ export function PathCarousel() {
                 aria-roledescription='slide'
                 aria-label={`${i + 1} of ${count}`}
                 aria-hidden={i !== index}
-                className='flex min-h-[419px] w-full shrink-0 flex-col items-center justify-center px-6 py-10 text-center'
+                className='flex min-h-[450px] w-full shrink-0 flex-col items-center justify-center px-6 py-10 text-center'
               >
-                <div className='flex h-[172px] items-end justify-center'>
+                <div className='flex h-[210px] items-center justify-center'>
                   <Image
                     src={path.image.src}
                     alt=''
                     width={path.image.width}
                     height={path.image.height}
                     draggable={false}
-                    className='max-h-[172px] w-auto select-none'
+                    style={{ width: path.image.displayWidth }}
+                    className='h-auto max-w-full select-none'
                   />
                 </div>
                 <h2 className='mt-5 font-[family-name:var(--font-stages-display)] text-[24px] leading-tight font-bold sm:text-[28px]'>
