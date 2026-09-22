@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
-import { type PathId, needsPace, pathDestination, retirementPaths } from './onboarding-paths';
+import { type PathId, needsPace, retirementPaths } from './onboarding-paths';
 import { PaceChoices } from './pace-choices';
 
 const SWIPE_THRESHOLD = 50;
@@ -13,7 +13,7 @@ const SWIPE_THRESHOLD = 50;
 /**
  * Version 1: one path per slide, stepped with the arrows, the dots, a swipe or
  * the arrow keys. "Select" on planning ahead or already retired moves on to
- * the pace question; the other two leave the page.
+ * the pace question; the other two stay put.
  */
 export function PathCarousel() {
   const router = useRouter();
@@ -34,13 +34,12 @@ export function PathCarousel() {
     return () => window.removeEventListener('keydown', onKey);
   }, [chosen, count]);
 
+  // Existing customer and open an account are dead ends in this prototype:
+  // their Select stays on the carousel rather than leading anywhere.
   function select(path: PathId) {
-    if (needsPace(path)) {
-      setChosen(path);
-      window.scrollTo({ top: 0 });
-      return;
-    }
-    router.push(pathDestination(path as 'existing' | 'open-account'));
+    if (!needsPace(path)) return;
+    setChosen(path);
+    window.scrollTo({ top: 0 });
   }
 
   if (chosen) {
