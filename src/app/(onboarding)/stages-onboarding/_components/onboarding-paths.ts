@@ -28,9 +28,15 @@ export type RetirementPath = {
   /** Copy as it appears on the carousel slide (the mockups word a few differently). */
   carouselTitle: string;
   carouselDescription: string;
-  /** `displayWidth` evens out how big each illustration looks: the crops
-   *  differ in shape, so each is scaled to roughly the same area. */
-  image: { src: string; width: number; height: number; displayWidth: number };
+  /** The on-card size h approved for each illustration. The artwork is
+   *  fitted inside it without stretching. */
+  image: {
+    src: string;
+    width: number;
+    height: number;
+    displayWidth: number;
+    displayHeight: number;
+  };
 };
 
 export const retirementPaths: RetirementPath[] = [
@@ -42,9 +48,10 @@ export const retirementPaths: RetirementPath[] = [
     carouselDescription: 'See if you’re on track for your retirement goals.',
     image: {
       src: '/stages-onboarding/planning-ahead.png',
-      width: 726,
+      width: 741,
       height: 624,
-      displayWidth: 242
+      displayWidth: 242,
+      displayHeight: 208
     }
   },
   {
@@ -55,9 +62,10 @@ export const retirementPaths: RetirementPath[] = [
     carouselDescription: 'Get a clear picture of your current savings.',
     image: {
       src: '/stages-onboarding/already-retired.png',
-      width: 900,
+      width: 921,
       height: 498,
-      displayWidth: 300
+      displayWidth: 300,
+      displayHeight: 166
     }
   },
   {
@@ -68,9 +76,10 @@ export const retirementPaths: RetirementPath[] = [
     carouselDescription: 'Sign in to view and manage your accounts.',
     image: {
       src: '/stages-onboarding/existing-customer.png',
-      width: 699,
+      width: 717,
       height: 531,
-      displayWidth: 233
+      displayWidth: 233,
+      displayHeight: 177
     }
   },
   {
@@ -81,9 +90,10 @@ export const retirementPaths: RetirementPath[] = [
     carouselDescription: 'Buy life insurance or open an investment account.',
     image: {
       src: '/stages-onboarding/open-an-account.png',
-      width: 852,
+      width: 867,
       height: 531,
-      displayWidth: 284
+      displayWidth: 284,
+      displayHeight: 177
     }
   }
 ];

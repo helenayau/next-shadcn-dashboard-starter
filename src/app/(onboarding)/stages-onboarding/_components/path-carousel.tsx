@@ -104,8 +104,8 @@ export function PathCarousel() {
                     height={path.image.height}
                     unoptimized
                     draggable={false}
-                    style={{ width: path.image.displayWidth }}
-                    className='h-auto max-w-full select-none'
+                    style={{ width: path.image.displayWidth, height: path.image.displayHeight }}
+                    className='max-w-full object-contain select-none'
                   />
                 </div>
                 <h2 className='mt-5 font-[family-name:var(--font-stages-display)] text-[24px] leading-tight font-bold sm:text-[28px]'>
