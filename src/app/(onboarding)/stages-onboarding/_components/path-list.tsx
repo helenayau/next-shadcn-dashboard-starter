@@ -3,12 +3,11 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import {
+  FINISHED_PATH,
   type PaceId,
   type PathId,
   needsPace,
-  paceDestination,
   paces,
-  pathDestination,
   retirementPaths
 } from './onboarding-paths';
 import { OptionCard } from './option-card';
@@ -17,6 +16,8 @@ import { OptionCard } from './option-card';
  * Version 2: all four paths stacked. "Now, choose your pace." appears only
  * once planning ahead or already retired is picked, and disappears (and
  * forgets its answer) if the visitor switches to either of the other two.
+ * Like the carousel, nothing links out: every pace lands on the end screen,
+ * and Continue on existing customer or open an account stays on the page.
  */
 export function PathList() {
   const router = useRouter();
@@ -36,15 +37,12 @@ export function PathList() {
       setError('Choose an option to continue.');
       return;
     }
-    if (needsPace(path)) {
-      if (!pace) {
-        setError('Choose your pace to continue.');
-        return;
-      }
-      router.push(paceDestination(pace));
+    if (!needsPace(path)) return;
+    if (!pace) {
+      setError('Choose your pace to continue.');
       return;
     }
-    router.push(pathDestination(path as 'existing' | 'open-account'));
+    router.push(FINISHED_PATH);
   }
 
   return (

@@ -12,12 +12,7 @@ export const stages = {
   cardBorder: '#7ECAF2'
 } as const;
 
-/** A static mockup of Prudential's sign-in page; the prototype never links out. */
-export const ACCOUNT_ACCESS_PATH = '/stages-onboarding/account-access';
-
-export const ADVISOR_PATH = '/stages-onboarding/connect-with-advisor';
-
-/** "You’ve reached the end!" — where the carousel's pace step lands. */
+/** "You’ve reached the end!" — where both versions' pace step lands. */
 export const FINISHED_PATH = '/stages-onboarding/finished';
 
 export type PathId = 'planning' | 'retired' | 'existing' | 'open-account';
@@ -157,13 +152,4 @@ export const carouselPaces: {
 /** Only these two paths go on to "Now, choose your pace." */
 export function needsPace(path: PathId | null) {
   return path === 'planning' || path === 'retired';
-}
-
-/** Where a path goes when it skips the pace question. */
-export function pathDestination(path: 'existing' | 'open-account') {
-  return path === 'existing' ? ACCOUNT_ACCESS_PATH : ADVISOR_PATH;
-}
-
-export function paceDestination(pace: PaceId) {
-  return pace === 'advisor' ? ADVISOR_PATH : `/stages-onboarding/${pace}-onboarding`;
 }

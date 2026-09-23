@@ -2,8 +2,7 @@ import { cn } from '@/lib/utils';
 
 /**
  * The white, centred choice card from the list mockup. `selected` draws the
- * navy outline; `asRadio` lets the list render cards as radios while the
- * carousel's pace step uses them as plain buttons.
+ * navy outline; `asRadio` renders the card as a radio in a radiogroup.
  */
 export function OptionCard({
   title,
