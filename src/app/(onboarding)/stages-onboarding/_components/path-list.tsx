@@ -13,7 +13,7 @@ import {
 import { OptionCard } from './option-card';
 
 /**
- * Version 2: all four paths stacked. "Now, choose your pace." appears only
+ * Version 2: all four paths stacked. the pace question appears only
  * once planning ahead or already retired is picked, and disappears (and
  * forgets its answer) if the visitor switches to either of the other two.
  * Like the carousel, nothing links out: every pace lands on the end screen,
@@ -70,7 +70,7 @@ export function PathList() {
       {showPace && (
         <>
           <h2 id='pace-heading' className='mt-10 text-center text-[20px] leading-tight font-bold'>
-            Now, choose your pace.
+            Great! Next, choose your pace.
           </h2>
           <div
             role='radiogroup'

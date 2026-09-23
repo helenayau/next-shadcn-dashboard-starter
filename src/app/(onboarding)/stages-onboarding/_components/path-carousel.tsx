@@ -37,7 +37,7 @@ export function PathCarousel() {
     return (
       <SlideCarousel
         key='pace'
-        heading='Great! Next, choose your pace'
+        heading='Great! Next, choose your pace.'
         slides={carouselPaces}
         onSelect={() => router.push(FINISHED_PATH)}
       />

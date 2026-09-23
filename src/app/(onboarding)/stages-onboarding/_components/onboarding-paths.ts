@@ -149,7 +149,7 @@ export const carouselPaces: {
   }
 ];
 
-/** Only these two paths go on to "Now, choose your pace." */
+/** Only these two paths go on to the pace question */
 export function needsPace(path: PathId | null) {
   return path === 'planning' || path === 'retired';
 }
