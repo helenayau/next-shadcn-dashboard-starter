@@ -17,8 +17,19 @@ export const ACCOUNT_ACCESS_PATH = '/stages-onboarding/account-access';
 
 export const ADVISOR_PATH = '/stages-onboarding/connect-with-advisor';
 
+/** "You’ve reached the end!" — where the carousel's pace step lands. */
+export const FINISHED_PATH = '/stages-onboarding/finished';
+
 export type PathId = 'planning' | 'retired' | 'existing' | 'open-account';
 export type PaceId = 'quick' | 'complete' | 'advisor';
+
+export type SlideImage = {
+  src: string;
+  width: number;
+  height: number;
+  displayWidth: number;
+  displayHeight: number;
+};
 
 export type RetirementPath = {
   id: PathId;
@@ -30,13 +41,7 @@ export type RetirementPath = {
   carouselDescription: string;
   /** The on-card size h approved for each illustration. The artwork is
    *  fitted inside it without stretching. */
-  image: {
-    src: string;
-    width: number;
-    height: number;
-    displayWidth: number;
-    displayHeight: number;
-  };
+  image: SlideImage;
 };
 
 export const retirementPaths: RetirementPath[] = [
@@ -113,6 +118,39 @@ export const paces: { id: PaceId; title: string; description: string }[] = [
     id: 'advisor',
     title: 'Connect with an advisor',
     description: 'Get one-on-one help with your next steps.'
+  }
+];
+
+/** The carousel's pace step: two slides, per h's 2026-09-23 mockup. */
+export const carouselPaces: {
+  id: Exclude<PaceId, 'advisor'>;
+  title: string;
+  description: string;
+  image: SlideImage;
+}[] = [
+  {
+    id: 'quick',
+    title: 'Quick onboarding',
+    description: 'Answer a few questions for a quick snapshot.',
+    image: {
+      src: '/stages-onboarding/quick-onboarding.png',
+      width: 726,
+      height: 546,
+      displayWidth: 241,
+      displayHeight: 182
+    }
+  },
+  {
+    id: 'complete',
+    title: 'Complete onboarding',
+    description: 'Answer detailed questions for a comprehensive view.',
+    image: {
+      src: '/stages-onboarding/complete-onboarding.png',
+      width: 753,
+      height: 516,
+      displayWidth: 251,
+      displayHeight: 172
+    }
   }
 ];
 

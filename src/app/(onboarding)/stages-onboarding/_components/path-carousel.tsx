@@ -5,64 +5,98 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
-import { type PathId, needsPace, retirementPaths } from './onboarding-paths';
-import { PaceChoices } from './pace-choices';
+import {
+  FINISHED_PATH,
+  type PathId,
+  type SlideImage,
+  carouselPaces,
+  needsPace,
+  retirementPaths
+} from './onboarding-paths';
 
 const SWIPE_THRESHOLD = 50;
+
+type Slide = {
+  id: string;
+  title: string;
+  description: string;
+  image: SlideImage;
+};
 
 /**
  * Version 1: one path per slide, stepped with the arrows, the dots, a swipe or
  * the arrow keys. "Select" on planning ahead or already retired moves on to
- * the pace question; the other two stay put.
+ * the pace carousel; the other two stay put. Either pace lands on the end
+ * screen.
  */
 export function PathCarousel() {
   const router = useRouter();
-  const [index, setIndex] = useState(0);
   const [chosen, setChosen] = useState<PathId | null>(null);
+
+  if (chosen) {
+    return (
+      <SlideCarousel
+        key='pace'
+        heading='Great! Next, choose your pace'
+        slides={carouselPaces}
+        onSelect={() => router.push(FINISHED_PATH)}
+      />
+    );
+  }
+
+  return (
+    <SlideCarousel
+      key='path'
+      heading='How can we help you today, James?'
+      slides={retirementPaths.map((path) => ({
+        id: path.id,
+        title: path.carouselTitle,
+        description: path.carouselDescription,
+        image: path.image
+      }))}
+      // Existing customer and open an account are dead ends in this prototype:
+      // their Select stays on the carousel rather than leading anywhere.
+      onSelect={(id) => {
+        const path = id as PathId;
+        if (!needsPace(path)) return;
+        setChosen(path);
+        window.scrollTo({ top: 0 });
+      }}
+    />
+  );
+}
+
+function SlideCarousel({
+  heading,
+  slides,
+  onSelect
+}: {
+  heading: string;
+  slides: Slide[];
+  onSelect: (id: string) => void;
+}) {
+  const [index, setIndex] = useState(0);
   const dragStart = useRef<number | null>(null);
 
-  const count = retirementPaths.length;
+  const count = slides.length;
   const go = (next: number) => setIndex(Math.min(count - 1, Math.max(0, next)));
 
   useEffect(() => {
-    if (chosen) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') setIndex((i) => Math.max(0, i - 1));
       if (e.key === 'ArrowRight') setIndex((i) => Math.min(count - 1, i + 1));
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [chosen, count]);
-
-  // Existing customer and open an account are dead ends in this prototype:
-  // their Select stays on the carousel rather than leading anywhere.
-  function select(path: PathId) {
-    if (!needsPace(path)) return;
-    setChosen(path);
-    window.scrollTo({ top: 0 });
-  }
-
-  if (chosen) {
-    return (
-      <section className='mx-auto w-full max-w-[652px] px-4 pt-14 pb-16 sm:pt-20'>
-        <BackButton onClick={() => setChosen(null)} />
-        <h1 className='mt-4 text-center text-[26px] leading-tight font-bold sm:text-[32px]'>
-          Now, choose your pace.
-        </h1>
-        <PaceChoices className='mt-8' onChoose={(href) => router.push(href)} />
-      </section>
-    );
-  }
+  }, [count]);
 
   return (
     <section
       className='px-4 pt-14 pb-16 sm:pt-20'
       aria-roledescription='carousel'
-      aria-label='How can we help you today'
+      aria-label={heading}
     >
-      <h1 className='text-center text-[26px] leading-tight font-bold sm:text-[32px]'>
-        How can we help you today, James?
-      </h1>
+      <h1 className='text-center text-[26px] leading-tight font-bold sm:text-[32px]'>{heading}</h1>
 
       <div className='mx-auto mt-8 flex max-w-[864px] items-center justify-center gap-3 sm:gap-[50px]'>
         <ArrowButton direction='prev' disabled={index === 0} onClick={() => go(index - 1)} />
@@ -87,9 +121,9 @@ export function PathCarousel() {
             className='flex transition-transform duration-300 ease-out motion-reduce:transition-none'
             style={{ transform: `translateX(-${index * 100}%)` }}
           >
-            {retirementPaths.map((path, i) => (
+            {slides.map((slide, i) => (
               <div
-                key={path.id}
+                key={slide.id}
                 role='group'
                 aria-roledescription='slide'
                 aria-label={`${i + 1} of ${count}`}
@@ -98,24 +132,27 @@ export function PathCarousel() {
               >
                 <div className='flex h-[210px] items-center justify-center'>
                   <Image
-                    src={path.image.src}
+                    src={slide.image.src}
                     alt=''
-                    width={path.image.width}
-                    height={path.image.height}
+                    width={slide.image.width}
+                    height={slide.image.height}
                     unoptimized
                     draggable={false}
-                    style={{ width: path.image.displayWidth, height: path.image.displayHeight }}
+                    style={{
+                      width: slide.image.displayWidth,
+                      height: slide.image.displayHeight
+                    }}
                     className='max-w-full object-contain select-none'
                   />
                 </div>
                 <h2 className='mt-5 font-[family-name:var(--font-stages-display)] text-[24px] leading-tight font-bold sm:text-[28px]'>
-                  {path.carouselTitle}
+                  {slide.title}
                 </h2>
-                <p className='mt-3 text-[17px] leading-snug'>{path.carouselDescription}</p>
+                <p className='mt-3 text-[17px] leading-snug'>{slide.description}</p>
                 <button
                   type='button'
                   tabIndex={i === index ? 0 : -1}
-                  onClick={() => select(path.id)}
+                  onClick={() => onSelect(slide.id)}
                   className='mt-5 h-12 w-[116px] rounded-full bg-[#001F45] text-base font-bold text-white transition-colors hover:bg-[#0B3366] focus-visible:ring-2 focus-visible:ring-[#0066CC] focus-visible:ring-offset-2 focus-visible:outline-none'
                 >
                   Select
@@ -133,9 +170,9 @@ export function PathCarousel() {
       </div>
 
       <div className='mt-8 flex items-center justify-center gap-1'>
-        {retirementPaths.map((path, i) => (
+        {slides.map((slide, i) => (
           <button
-            key={path.id}
+            key={slide.id}
             type='button'
             aria-label={`Go to slide ${i + 1}`}
             aria-current={i === index}
@@ -183,19 +220,6 @@ function ArrowButton({
       )}
     >
       <Icon className='size-5' stroke={2.5} />
-    </button>
-  );
-}
-
-export function BackButton({ onClick }: { onClick: () => void }) {
-  return (
-    <button
-      type='button'
-      onClick={onClick}
-      className='inline-flex items-center gap-1 text-[15px] font-semibold text-[#0066CC] hover:underline'
-    >
-      <Icons.chevronLeft className='size-4' stroke={2.5} />
-      Back
     </button>
   );
 }
