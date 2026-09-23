@@ -75,7 +75,7 @@ export function PathList() {
           <div
             role='radiogroup'
             aria-labelledby='pace-heading'
-            className='mt-3.5 flex flex-col gap-3'
+            className='mt-6 flex flex-col gap-3'
           >
             {paces.map((option) => (
               <OptionCard
