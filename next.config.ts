@@ -25,9 +25,9 @@ const baseConfig: NextConfig = {
   },
   transpilePackages: ['geist'],
   // The Stages onboarding prototype is also served from its own Vercel
-  // project, `stages-onboarding`. On that host the bare address shows the
-  // carousel (version A) and `/list` shows the list (version B), so the links
-  // participants see carry only the project name.
+  // project, `stages-onboarding`. On that host `/carousel` shows version A
+  // and `/list` shows version B, so the links participants see carry only the
+  // project name. The bare address still opens the carousel for older links.
   async rewrites() {
     const host = [
       { type: 'host' as const, value: 'stages-onboarding(-[a-z0-9-]+)?\\.vercel\\.app' }
@@ -35,6 +35,7 @@ const baseConfig: NextConfig = {
     return {
       beforeFiles: [
         { source: '/', has: host, destination: '/stages-onboarding/carousel' },
+        { source: '/carousel', has: host, destination: '/stages-onboarding/carousel' },
         { source: '/list', has: host, destination: '/stages-onboarding/list' }
       ]
     };
