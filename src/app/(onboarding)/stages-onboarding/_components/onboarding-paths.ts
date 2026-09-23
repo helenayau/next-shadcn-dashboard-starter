@@ -16,7 +16,7 @@ export const stages = {
 export const FINISHED_PATH = '/stages-onboarding/finished';
 
 export type PathId = 'planning' | 'retired' | 'existing' | 'open-account';
-export type PaceId = 'quick' | 'complete' | 'advisor';
+export type PaceId = 'quick' | 'complete';
 
 export type SlideImage = {
   src: string;
@@ -108,17 +108,12 @@ export const paces: { id: PaceId; title: string; description: string }[] = [
     id: 'complete',
     title: 'Complete onboarding',
     description: 'Answer detailed questions for a comprehensive view.'
-  },
-  {
-    id: 'advisor',
-    title: 'Connect with an advisor',
-    description: 'Get one-on-one help with your next steps.'
   }
 ];
 
 /** The carousel's pace step: two slides, per h's 2026-09-23 mockup. */
 export const carouselPaces: {
-  id: Exclude<PaceId, 'advisor'>;
+  id: PaceId;
   title: string;
   description: string;
   image: SlideImage;
