@@ -56,7 +56,7 @@ export const retirementPaths: RetirementPath[] = [
   },
   {
     id: 'retired',
-    listTitle: 'I’m already retired.',
+    listTitle: 'I’m already retired',
     listDescription: 'Get a clear picture of your current savings.',
     carouselTitle: 'I’m already retired',
     carouselDescription: 'Get a clear picture of your current savings.',
