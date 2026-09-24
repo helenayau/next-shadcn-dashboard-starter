@@ -17,6 +17,8 @@ import {
   CardTitle
 } from '@/components/ui/card';
 import { FieldGroup } from '@/components/ui/field';
+import { Switch } from '@/components/ui/switch';
+import { Badge } from '@/components/ui/badge';
 import { UserAvatarProfile } from '@/components/user-avatar-profile';
 import { accountHolder, type AccountHolder } from '@/constants/mock-api-annuity';
 import { Icons } from '@/components/icons';
@@ -251,34 +253,40 @@ export default function ProfileViewPage() {
               preferencesForm.handleSubmit();
             }}
           >
-            <CardContent className='flex flex-col gap-4'>
-              <preferencesForm.AppField
-                name='paperlessStatements'
-                children={(field) => (
-                  <field.SwitchField
-                    label='Paperless statements'
-                    description='Get statements by email instead of mail'
-                  />
-                )}
-              />
-              <preferencesForm.AppField
-                name='paymentAlerts'
-                children={(field) => (
-                  <field.SwitchField
-                    label='Payment deposit alerts'
-                    description='Notify me when a guaranteed income payment is deposited'
-                  />
-                )}
-              />
-              <preferencesForm.AppField
-                name='smsReminders'
-                children={(field) => (
-                  <field.SwitchField
-                    label='SMS reminders'
-                    description='Text me reminders about upcoming payments and reviews'
-                  />
-                )}
-              />
+            <CardContent className='flex flex-col gap-3'>
+              <div className='rounded-lg border p-4'>
+                <preferencesForm.AppField
+                  name='paperlessStatements'
+                  children={(field) => (
+                    <field.SwitchField
+                      label='Paperless statements'
+                      description='Get statements by email instead of mail'
+                    />
+                  )}
+                />
+              </div>
+              <div className='rounded-lg border p-4'>
+                <preferencesForm.AppField
+                  name='paymentAlerts'
+                  children={(field) => (
+                    <field.SwitchField
+                      label='Payment deposit alerts'
+                      description='Notify me when a guaranteed income payment is deposited'
+                    />
+                  )}
+                />
+              </div>
+              <div className='rounded-lg border p-4'>
+                <preferencesForm.AppField
+                  name='smsReminders'
+                  children={(field) => (
+                    <field.SwitchField
+                      label='SMS reminders'
+                      description='Text me reminders about upcoming payments and reviews'
+                    />
+                  )}
+                />
+              </div>
             </CardContent>
             <CardFooter>
               <preferencesForm.AppForm>
@@ -293,16 +301,40 @@ export default function ProfileViewPage() {
         <Card>
           <CardHeader>
             <CardTitle>Security</CardTitle>
-            <CardDescription>Account access is disabled in this demo deployment</CardDescription>
+            <CardDescription>
+              Sign-in and password management use Clerk in the full version of this app, so these
+              controls are disabled in this demo deployment
+            </CardDescription>
           </CardHeader>
-          <CardContent className='text-muted-foreground text-sm'>
-            Sign-in and password management use Clerk in the full version of this app.
+          <CardContent className='flex flex-col gap-3'>
+            <div className='flex items-center justify-between gap-4 rounded-lg border p-4'>
+              <div>
+                <div className='font-medium'>Password</div>
+                <div className='text-muted-foreground text-sm'>Last changed: never</div>
+              </div>
+              <Button disabled>Change password</Button>
+            </div>
+
+            <div className='flex items-center justify-between gap-4 rounded-lg border p-4'>
+              <div>
+                <div className='font-medium'>Two-factor authentication</div>
+                <div className='text-muted-foreground text-sm'>
+                  Require a code from your phone when signing in
+                </div>
+              </div>
+              <Switch checked={false} disabled />
+            </div>
+
+            <div className='flex items-center justify-between gap-4 rounded-lg border p-4'>
+              <div>
+                <div className='font-medium'>Active sessions</div>
+                <div className='text-muted-foreground text-sm'>
+                  Where you&apos;re currently signed in
+                </div>
+              </div>
+              <Badge variant='outline'>1 device</Badge>
+            </div>
           </CardContent>
-          <CardFooter>
-            <Button variant='outline' disabled>
-              Change password
-            </Button>
-          </CardFooter>
         </Card>
       </div>
     </PageContainer>

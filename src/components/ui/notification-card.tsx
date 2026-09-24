@@ -2,6 +2,7 @@
 
 import type { FC } from 'react';
 import { Icons } from '@/components/icons';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export type NotificationStatus = 'unread' | 'read' | 'archived';
@@ -46,6 +47,17 @@ const formatDate = (date: string | Date): string => {
     month: 'short',
     day: 'numeric'
   });
+};
+
+const getActionVariant = (style?: ActionStyle) => {
+  switch (style) {
+    case 'primary':
+      return 'default' as const;
+    case 'danger':
+      return 'destructive' as const;
+    default:
+      return 'outline' as const;
+  }
 };
 
 const getActionIcon = (actionType: ActionType) => {
@@ -116,17 +128,15 @@ export const NotificationCard: FC<NotificationCardProps> = ({
 
           {/* Mark as read button */}
           {isUnread && onMarkAsRead && (
-            <button
+            <Button
               type='button'
+              variant='ghost'
+              size='icon-sm'
               onClick={() => onMarkAsRead(id)}
-              className={cn(
-                'rounded-lg p-1.5 transition-colors',
-                'text-muted-foreground hover:bg-accent hover:text-foreground'
-              )}
               aria-label='Mark as read'
             >
               <Icons.check size={16} />
-            </button>
+            </Button>
           )}
         </div>
 
@@ -140,21 +150,13 @@ export const NotificationCard: FC<NotificationCardProps> = ({
                 const showLoading = isLoading && action.type !== 'modal';
 
                 return (
-                  <button
+                  <Button
                     key={action.id}
                     type='button'
+                    size='sm'
+                    variant={getActionVariant(action.style)}
                     disabled={isLoading || isExecuted}
                     onClick={() => onAction?.(id, action.id, action.type)}
-                    className={cn(
-                      'flex items-center gap-1.5 rounded-lg px-4 py-1.5 text-xs font-normal transition',
-                      action.style === 'primary'
-                        ? 'bg-primary/10 text-primary hover:bg-primary/20'
-                        : action.style === 'danger'
-                          ? 'bg-destructive/10 text-destructive hover:bg-destructive/20'
-                          : 'bg-accent text-muted-foreground hover:bg-accent hover:text-foreground',
-                      showLoading && 'opacity-50',
-                      isExecuted && 'cursor-not-allowed opacity-60'
-                    )}
                   >
                     {showLoading ? (
                       <Icons.spinner size={12} className='animate-spin' />
@@ -168,7 +170,7 @@ export const NotificationCard: FC<NotificationCardProps> = ({
                         )}
                       </>
                     )}
-                  </button>
+                  </Button>
                 );
               })}
             </div>
