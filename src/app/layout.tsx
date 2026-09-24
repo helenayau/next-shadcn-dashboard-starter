@@ -20,32 +20,20 @@ export const metadata: Metadata = {
     ? { metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL) }
     : {}),
   title: {
-    default: 'Shadcn Dashboard - Next.js Admin Dashboard Template',
-    template: '%s | Shadcn Dashboard'
+    default: 'Annuity Portal',
+    template: '%s | Annuity Portal'
   },
-  description:
-    'Free, open source admin dashboard starter built with Next.js 16, shadcn/ui, Tailwind CSS, and TypeScript.',
+  description: 'Manage your annuity: guaranteed income, withdrawals, and beneficiaries.',
   openGraph: {
-    title: 'Shadcn Dashboard - Next.js Admin Dashboard Template',
-    description:
-      'Free, open source admin dashboard starter built with Next.js 16, shadcn/ui, Tailwind CSS, and TypeScript.',
-    siteName: 'Shadcn Dashboard',
-    type: 'website',
-    images: [
-      {
-        url: '/shadcn-dashboard.png',
-        width: 3200,
-        height: 1600,
-        alt: 'Shadcn Dashboard overview page'
-      }
-    ]
+    title: 'Annuity Portal',
+    description: 'Manage your annuity: guaranteed income, withdrawals, and beneficiaries.',
+    siteName: 'Annuity Portal',
+    type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shadcn Dashboard - Next.js Admin Dashboard Template',
-    description:
-      'Free, open source admin dashboard starter built with Next.js 16, shadcn/ui, Tailwind CSS, and TypeScript.',
-    images: ['/shadcn-dashboard.png']
+    title: 'Annuity Portal',
+    description: 'Manage your annuity: guaranteed income, withdrawals, and beneficiaries.'
   }
 };
 

@@ -7,8 +7,11 @@ import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 
 export const metadata: Metadata = {
-  title: 'Annuity Portal',
-  description: 'Retiree dashboard for managing your annuity',
+  title: {
+    default: 'Annuity Portal',
+    template: '%s | Annuity Portal'
+  },
+  description: 'Retiree portal for managing your annuity',
   robots: {
     index: false,
     follow: false
