@@ -8,6 +8,7 @@ import { useAppForm } from '@/lib/form';
 import { Button } from '@/components/ui/button';
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -16,7 +17,8 @@ import {
 } from '@/components/ui/card';
 import { FieldGroup } from '@/components/ui/field';
 import { UserAvatarProfile } from '@/components/user-avatar-profile';
-import { accountHolder } from '@/constants/mock-api-annuity';
+import { accountHolder, type AccountHolder } from '@/constants/mock-api-annuity';
+import { Icons } from '@/components/icons';
 
 const personalInfoSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -30,9 +32,63 @@ const personalInfoSchema = z.object({
   zip: z.string().min(5, 'Enter a valid ZIP code')
 });
 
-export default function ProfileViewPage() {
-  const [holder, setHolder] = useState(accountHolder);
+function formatDate(isoDate: string) {
+  return new Date(isoDate).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC'
+  });
+}
 
+function PersonalInfoView({ holder, onEdit }: { holder: AccountHolder; onEdit: () => void }) {
+  const fields: Array<[string, string]> = [
+    ['First name', holder.firstName],
+    ['Last name', holder.lastName],
+    ['Email', holder.email],
+    ['Phone', holder.phone],
+    ['Date of birth', formatDate(holder.dateOfBirth)],
+    ['Mailing address', holder.addressLine1],
+    ['City', holder.city],
+    ['State', holder.state],
+    ['ZIP code', holder.zip]
+  ];
+
+  return (
+    <>
+      <CardHeader>
+        <CardTitle>Personal Information</CardTitle>
+        <CardDescription>Your contact details and mailing address</CardDescription>
+        <CardAction>
+          <Button variant='outline' size='sm' onClick={onEdit}>
+            <Icons.edit className='mr-2 h-4 w-4' />
+            Edit
+          </Button>
+        </CardAction>
+      </CardHeader>
+      <CardContent>
+        <dl className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+          {fields.map(([label, value]) => (
+            <div key={label}>
+              <dt className='text-muted-foreground text-sm'>{label}</dt>
+              <dd className='font-medium'>{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </CardContent>
+    </>
+  );
+}
+
+function PersonalInfoForm({
+  holder,
+  onCancel,
+  onSave
+}: {
+  holder: AccountHolder;
+  onCancel: () => void;
+  onSave: (holder: AccountHolder) => void;
+}) {
   const form = useAppForm({
     defaultValues: {
       firstName: holder.firstName,
@@ -49,13 +105,89 @@ export default function ProfileViewPage() {
       onSubmit: personalInfoSchema
     },
     onSubmit: ({ value }) => {
-      setHolder({
+      onSave({
         ...value,
-        dateOfBirth: value.dateOfBirth?.toISOString().slice(0, 10) ?? holder.dateOfBirth
+        dateOfBirth: value.dateOfBirth.toISOString().slice(0, 10)
       });
       toast.success('Profile updated');
     }
   });
+
+  return (
+    <>
+      <CardHeader>
+        <CardTitle>Personal Information</CardTitle>
+        <CardDescription>Update your contact details and mailing address</CardDescription>
+      </CardHeader>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          form.handleSubmit();
+        }}
+      >
+        <CardContent>
+          <FieldGroup className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+            <form.AppField
+              name='firstName'
+              children={(field) => <field.TextField label='First name' required />}
+            />
+            <form.AppField
+              name='lastName'
+              children={(field) => <field.TextField label='Last name' required />}
+            />
+            <form.AppField
+              name='email'
+              children={(field) => <field.TextField label='Email' required type='email' />}
+            />
+            <form.AppField
+              name='phone'
+              children={(field) => <field.TextField label='Phone' required type='tel' />}
+            />
+            <form.AppField
+              name='dateOfBirth'
+              children={(field) => (
+                <field.DatePickerField
+                  label='Date of birth'
+                  disabledDates={(date) => date > new Date()}
+                />
+              )}
+            />
+            <form.AppField
+              name='addressLine1'
+              children={(field) => <field.TextField label='Mailing address' required />}
+            />
+            <form.AppField
+              name='city'
+              children={(field) => <field.TextField label='City' required />}
+            />
+            <div className='grid grid-cols-2 gap-4'>
+              <form.AppField
+                name='state'
+                children={(field) => <field.TextField label='State' required placeholder='MI' />}
+              />
+              <form.AppField
+                name='zip'
+                children={(field) => <field.TextField label='ZIP code' required />}
+              />
+            </div>
+          </FieldGroup>
+        </CardContent>
+        <CardFooter className='gap-2'>
+          <form.AppForm>
+            <form.SubmitButton>Save changes</form.SubmitButton>
+          </form.AppForm>
+          <Button type='button' variant='outline' onClick={onCancel}>
+            Cancel
+          </Button>
+        </CardFooter>
+      </form>
+    </>
+  );
+}
+
+export default function ProfileViewPage() {
+  const [holder, setHolder] = useState(accountHolder);
+  const [isEditingPersonal, setIsEditingPersonal] = useState(false);
 
   const preferencesForm = useAppForm({
     defaultValues: {
@@ -91,71 +223,18 @@ export default function ProfileViewPage() {
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle>Personal Information</CardTitle>
-            <CardDescription>Update your contact details and mailing address</CardDescription>
-          </CardHeader>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              form.handleSubmit();
-            }}
-          >
-            <CardContent>
-              <FieldGroup className='grid grid-cols-1 gap-4 md:grid-cols-2'>
-                <form.AppField
-                  name='firstName'
-                  children={(field) => <field.TextField label='First name' required />}
-                />
-                <form.AppField
-                  name='lastName'
-                  children={(field) => <field.TextField label='Last name' required />}
-                />
-                <form.AppField
-                  name='email'
-                  children={(field) => <field.TextField label='Email' required type='email' />}
-                />
-                <form.AppField
-                  name='phone'
-                  children={(field) => <field.TextField label='Phone' required type='tel' />}
-                />
-                <form.AppField
-                  name='dateOfBirth'
-                  children={(field) => (
-                    <field.DatePickerField
-                      label='Date of birth'
-                      disabledDates={(date) => date > new Date()}
-                    />
-                  )}
-                />
-                <form.AppField
-                  name='addressLine1'
-                  children={(field) => <field.TextField label='Mailing address' required />}
-                />
-                <form.AppField
-                  name='city'
-                  children={(field) => <field.TextField label='City' required />}
-                />
-                <div className='grid grid-cols-2 gap-4'>
-                  <form.AppField
-                    name='state'
-                    children={(field) => (
-                      <field.TextField label='State' required placeholder='MI' />
-                    )}
-                  />
-                  <form.AppField
-                    name='zip'
-                    children={(field) => <field.TextField label='ZIP code' required />}
-                  />
-                </div>
-              </FieldGroup>
-            </CardContent>
-            <CardFooter>
-              <form.AppForm>
-                <form.SubmitButton>Save changes</form.SubmitButton>
-              </form.AppForm>
-            </CardFooter>
-          </form>
+          {isEditingPersonal ? (
+            <PersonalInfoForm
+              holder={holder}
+              onCancel={() => setIsEditingPersonal(false)}
+              onSave={(updated) => {
+                setHolder(updated);
+                setIsEditingPersonal(false);
+              }}
+            />
+          ) : (
+            <PersonalInfoView holder={holder} onEdit={() => setIsEditingPersonal(true)} />
+          )}
         </Card>
 
         <Card>
