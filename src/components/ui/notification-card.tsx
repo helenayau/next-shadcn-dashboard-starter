@@ -91,39 +91,19 @@ export const NotificationCard: FC<NotificationCardProps> = ({
   const isUnread = status === 'unread';
 
   return (
-    <div
-      className={cn(
-        'group relative w-full rounded-2xl transition-all',
-        isUnread ? 'bg-muted' : 'bg-muted/40',
-        className
-      )}
-    >
+    <div className={cn('group relative w-full rounded-2xl bg-muted transition-all', className)}>
       <div className='px-4 py-3.5'>
         <div className='flex items-start justify-between gap-3'>
           {/* Main content */}
           <div className='min-w-0 flex-1 space-y-1'>
             {/* Title with unread indicator */}
             <div className='flex items-center gap-2'>
-              <h3
-                className={cn(
-                  'text-[15px] leading-tight font-semibold',
-                  isUnread ? 'text-foreground' : 'text-muted-foreground'
-                )}
-              >
-                {title}
-              </h3>
+              <h3 className='text-foreground text-[15px] leading-tight font-semibold'>{title}</h3>
               {isUnread && <div className='h-1.5 w-1.5 flex-shrink-0 rounded-full bg-sky-500' />}
             </div>
 
             {/* Description */}
-            <p
-              className={cn(
-                'mb-0 text-[13px]',
-                isUnread ? 'text-muted-foreground' : 'text-muted-foreground/60'
-              )}
-            >
-              {body}
-            </p>
+            <p className='text-muted-foreground mb-0 text-[13px]'>{body}</p>
           </div>
 
           {/* Mark as read button */}

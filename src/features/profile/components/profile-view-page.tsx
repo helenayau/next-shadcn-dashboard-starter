@@ -297,25 +297,6 @@ export default function ProfileViewPage() {
             </CardFooter>
           </form>
         </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Security</CardTitle>
-            <CardDescription>
-              Password management uses Clerk in the full version of this app, so this is disabled in
-              this demo deployment
-            </CardDescription>
-            <CardAction>
-              <Button variant='outline' size='sm' disabled>
-                <Icons.edit className='mr-2 h-4 w-4' />
-                Change password
-              </Button>
-            </CardAction>
-          </CardHeader>
-          <CardContent>
-            <div className='text-muted-foreground text-sm'>Last changed: never</div>
-          </CardContent>
-        </Card>
       </div>
     </PageContainer>
   );
