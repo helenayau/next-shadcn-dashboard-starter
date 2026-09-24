@@ -11,7 +11,7 @@ export const navGroups: NavGroup[] = [
     items: [
       {
         title: 'My Annuity',
-        url: '/dashboard/annuity',
+        url: '/',
         icon: 'piggyBank',
         isActive: false,
         shortcut: ['a', 'n'],
@@ -19,14 +19,14 @@ export const navGroups: NavGroup[] = [
       },
       {
         title: 'Profile',
-        url: '/dashboard/profile',
+        url: '/profile',
         icon: 'profile',
         shortcut: ['m', 'm'],
         items: []
       },
       {
         title: 'Notifications',
-        url: '/dashboard/notifications',
+        url: '/notifications',
         icon: 'notification',
         shortcut: ['n', 'n'],
         items: []

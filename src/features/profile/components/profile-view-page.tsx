@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useStore } from '@tanstack/react-form';
 import * as z from 'zod';
 import { toast } from 'sonner';
 import PageContainer from '@/components/layout/page-container';
@@ -195,10 +196,12 @@ export default function ProfileViewPage() {
       paymentAlerts: true,
       smsReminders: false
     },
-    onSubmit: () => {
+    onSubmit: ({ value }) => {
+      preferencesForm.reset(value);
       toast.success('Preferences saved');
     }
   });
+  const preferencesDirty = useStore(preferencesForm.store, (state) => state.isDirty);
 
   const displayUser = {
     imageUrl: '',
@@ -279,7 +282,9 @@ export default function ProfileViewPage() {
             </CardContent>
             <CardFooter>
               <preferencesForm.AppForm>
-                <preferencesForm.SubmitButton>Save preferences</preferencesForm.SubmitButton>
+                <preferencesForm.SubmitButton disabled={!preferencesDirty}>
+                  Save preferences
+                </preferencesForm.SubmitButton>
               </preferencesForm.AppForm>
             </CardFooter>
           </form>

@@ -9,8 +9,8 @@ import { useRouter } from 'next/navigation';
 import { useNotificationStore } from '../utils/store';
 
 const actionRoutes: Record<string, string> = {
-  'view-annuity': '/dashboard/annuity',
-  'view-profile': '/dashboard/profile'
+  'view-annuity': '/',
+  'view-profile': '/profile'
 };
 
 export default function NotificationsPage() {
