@@ -26,6 +26,7 @@ import {
 } from '@/components/ui/sidebar';
 import { UserAvatarProfile } from '@/components/user-avatar-profile';
 import { navGroups } from '@/config/nav-config';
+import { accountHolder } from '@/constants/mock-api-annuity';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { useFilteredNavGroups } from '@/hooks/use-nav';
 import Link from 'next/link';
@@ -36,8 +37,8 @@ import { OrgSwitcher } from '../org-switcher';
 
 const guestUser = {
   imageUrl: '',
-  fullName: 'Guest User',
-  emailAddresses: [{ emailAddress: 'guest@example.com' }]
+  fullName: `${accountHolder.firstName} ${accountHolder.lastName}`,
+  emailAddresses: [{ emailAddress: accountHolder.email }]
 };
 
 export default function AppSidebar() {

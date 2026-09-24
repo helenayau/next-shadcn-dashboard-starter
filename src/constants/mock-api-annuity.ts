@@ -1,3 +1,27 @@
+export interface AccountHolder {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  dateOfBirth: string;
+  addressLine1: string;
+  city: string;
+  state: string;
+  zip: string;
+}
+
+export const accountHolder: AccountHolder = {
+  firstName: 'Alex',
+  lastName: 'Morgan',
+  email: 'alex.morgan@example.com',
+  phone: '(555) 123-4567',
+  dateOfBirth: '1958-04-12',
+  addressLine1: '482 Willow Creek Dr',
+  city: 'Ann Arbor',
+  state: 'MI',
+  zip: '48103'
+};
+
 export interface AnnuitySummary {
   accountValue: number;
   guaranteedMonthlyIncome: number;
