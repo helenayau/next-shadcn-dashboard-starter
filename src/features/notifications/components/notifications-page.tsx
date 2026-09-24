@@ -9,11 +9,8 @@ import { useRouter } from 'next/navigation';
 import { useNotificationStore } from '../utils/store';
 
 const actionRoutes: Record<string, string> = {
-  view: '/dashboard/workspaces',
-  'view-product': '/dashboard/product',
-  billing: '/dashboard/billing',
-  open: '/dashboard/kanban',
-  'open-chat': '/dashboard/chat'
+  'view-annuity': '/dashboard/annuity',
+  'view-profile': '/dashboard/profile'
 };
 
 export default function NotificationsPage() {

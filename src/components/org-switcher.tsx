@@ -13,8 +13,8 @@ export function OrgSwitcher() {
             <Icons.galleryVerticalEnd className='size-4' />
           </div>
           <div className='grid flex-1 text-left text-sm leading-tight'>
-            <span className='truncate font-medium'>Shadcn Dashboard</span>
-            <span className='text-muted-foreground truncate text-xs'>Demo Workspace</span>
+            <span className='truncate font-medium'>Annuity Portal</span>
+            <span className='text-muted-foreground truncate text-xs'>Retiree Account</span>
           </div>
         </SidebarMenuButton>
       </SidebarMenuItem>

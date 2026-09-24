@@ -23,14 +23,14 @@ type NotificationState = {
 const mockNotifications: Notification[] = [
   {
     id: '1',
-    title: 'New team member joined',
-    body: 'Sarah Connor has joined the Engineering workspace.',
+    title: 'Payment deposited',
+    body: 'Your guaranteed monthly income of $2,150 was deposited on Sep 1, 2026.',
     status: 'unread',
     createdAt: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
     actions: [
       {
-        id: 'view',
-        label: 'View workspace',
+        id: 'view-annuity',
+        label: 'View annuity',
         type: 'redirect',
         style: 'primary'
       }
@@ -38,14 +38,14 @@ const mockNotifications: Notification[] = [
   },
   {
     id: '2',
-    title: 'New product added',
-    body: 'A new product "Dashboard Pro" has been added to the catalog.',
+    title: 'Statement ready',
+    body: 'Your Q3 annuity statement is ready to view.',
     status: 'unread',
     createdAt: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
     actions: [
       {
-        id: 'view-product',
-        label: 'View products',
+        id: 'view-annuity',
+        label: 'View annuity',
         type: 'redirect',
         style: 'primary'
       }
@@ -53,14 +53,14 @@ const mockNotifications: Notification[] = [
   },
   {
     id: '3',
-    title: 'Billing cycle updated',
-    body: 'Your Pro plan has been renewed. Next invoice on April 24, 2026.',
+    title: 'Beneficiary updated',
+    body: "Pat Morgan's beneficiary allocation was updated to 70%.",
     status: 'unread',
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
     actions: [
       {
-        id: 'billing',
-        label: 'View billing',
+        id: 'view-annuity',
+        label: 'View beneficiaries',
         type: 'redirect',
         style: 'primary'
       }
@@ -68,14 +68,14 @@ const mockNotifications: Notification[] = [
   },
   {
     id: '4',
-    title: 'Task assigned to you',
-    body: 'You have been assigned "Update dashboard analytics" on the Kanban board.',
+    title: 'Annual review reminder',
+    body: 'It’s time for your annual annuity review with your advisor.',
     status: 'read',
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
     actions: [
       {
-        id: 'open',
-        label: 'Open kanban',
+        id: 'view-profile',
+        label: 'View profile',
         type: 'redirect',
         style: 'primary'
       }
@@ -83,14 +83,14 @@ const mockNotifications: Notification[] = [
   },
   {
     id: '5',
-    title: 'New message from Alex',
-    body: 'Alex sent you a message: "Hey, can we sync on the overview dashboard?"',
+    title: 'Next payment scheduled',
+    body: 'Your next guaranteed income payment is scheduled for Oct 1, 2026.',
     status: 'read',
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3).toISOString(),
     actions: [
       {
-        id: 'open-chat',
-        label: 'Open chat',
+        id: 'view-annuity',
+        label: 'View annuity',
         type: 'redirect',
         style: 'primary'
       }
