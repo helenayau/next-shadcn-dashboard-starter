@@ -143,7 +143,7 @@ export const NotificationCard: FC<NotificationCardProps> = ({
         <div className='mt-3 flex items-end justify-between'>
           {/* Actions */}
           {actions.length > 0 && (
-            <div className={cn('flex flex-wrap items-center gap-2', !isUnread && 'opacity-60')}>
+            <div className='flex flex-wrap items-center gap-2'>
               {actions.map((action) => {
                 const isLoading = loadingActionId === action.id;
                 const isExecuted = action.executed || false;

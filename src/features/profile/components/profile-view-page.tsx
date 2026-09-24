@@ -17,8 +17,6 @@ import {
   CardTitle
 } from '@/components/ui/card';
 import { FieldGroup } from '@/components/ui/field';
-import { Switch } from '@/components/ui/switch';
-import { Badge } from '@/components/ui/badge';
 import { UserAvatarProfile } from '@/components/user-avatar-profile';
 import { accountHolder, type AccountHolder } from '@/constants/mock-api-annuity';
 import { Icons } from '@/components/icons';
@@ -123,6 +121,7 @@ function PersonalInfoForm({
         <CardDescription>Update your contact details and mailing address</CardDescription>
       </CardHeader>
       <form
+        className='flex flex-col gap-(--card-spacing)'
         onSubmit={(e) => {
           e.preventDefault();
           form.handleSubmit();
@@ -248,6 +247,7 @@ export default function ProfileViewPage() {
             <CardDescription>Choose how we keep you updated</CardDescription>
           </CardHeader>
           <form
+            className='flex flex-col gap-(--card-spacing)'
             onSubmit={(e) => {
               e.preventDefault();
               preferencesForm.handleSubmit();
@@ -302,38 +302,18 @@ export default function ProfileViewPage() {
           <CardHeader>
             <CardTitle>Security</CardTitle>
             <CardDescription>
-              Sign-in and password management use Clerk in the full version of this app, so these
-              controls are disabled in this demo deployment
+              Password management uses Clerk in the full version of this app, so this is disabled in
+              this demo deployment
             </CardDescription>
+            <CardAction>
+              <Button variant='outline' size='sm' disabled>
+                <Icons.edit className='mr-2 h-4 w-4' />
+                Change password
+              </Button>
+            </CardAction>
           </CardHeader>
-          <CardContent className='flex flex-col gap-3'>
-            <div className='flex items-center justify-between gap-4 rounded-lg border p-4'>
-              <div>
-                <div className='font-medium'>Password</div>
-                <div className='text-muted-foreground text-sm'>Last changed: never</div>
-              </div>
-              <Button disabled>Change password</Button>
-            </div>
-
-            <div className='flex items-center justify-between gap-4 rounded-lg border p-4'>
-              <div>
-                <div className='font-medium'>Two-factor authentication</div>
-                <div className='text-muted-foreground text-sm'>
-                  Require a code from your phone when signing in
-                </div>
-              </div>
-              <Switch checked={false} disabled />
-            </div>
-
-            <div className='flex items-center justify-between gap-4 rounded-lg border p-4'>
-              <div>
-                <div className='font-medium'>Active sessions</div>
-                <div className='text-muted-foreground text-sm'>
-                  Where you&apos;re currently signed in
-                </div>
-              </div>
-              <Badge variant='outline'>1 device</Badge>
-            </div>
+          <CardContent>
+            <div className='text-muted-foreground text-sm'>Last changed: never</div>
           </CardContent>
         </Card>
       </div>
