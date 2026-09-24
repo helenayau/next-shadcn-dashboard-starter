@@ -7,7 +7,7 @@ import { NavGroup } from '@/types';
  */
 export const navGroups: NavGroup[] = [
   {
-    label: 'Overview',
+    label: '',
     items: [
       {
         title: 'My Annuity',
@@ -16,12 +16,7 @@ export const navGroups: NavGroup[] = [
         isActive: false,
         shortcut: ['a', 'n'],
         items: []
-      }
-    ]
-  },
-  {
-    label: 'Account',
-    items: [
+      },
       {
         title: 'Profile',
         url: '/dashboard/profile',
